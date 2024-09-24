@@ -1,112 +1,139 @@
-/**
- * @author Prénom Nom courriel
- * @todo ADAPTER ce fichier selon le projet
-**/
-
-/**
- * TABLE DES MATIÈRES
- * Palette de couleurs
- * Base commune
- * - Bouton du menu
- * - Liste du menu
- * - Liens du menu
- * Si le javascript est activé
- */
-
-/****** Palette de couleurs *******/
-/*
-Couleur de fond : #d9d7d0
-Effet de survol : #f5ae09
-Effet actif : #f4d07c
-*/
-
-/****** Base commune *******/
-
-/* Bouton du menu */
-.menu {
-
-    &__controle {
-        background-color: $bleuPale;
-        border: none;
-        padding: 10px;
-        min-width: 40px;
-        width: 80px;
-        @media (min-width: 601px){
-            display: none;
-        }
-        &:hover,
-        &:active{
-            background-color: $bleuMoyen;;
-        }
-        &:focus{
-            /**
-             * Les styles du navigateur utilisent la règle outline pour définir
-             * l'état focus des éléments interactifs.
-             * Vous pouvez redéfinir cette règle ou remplacer par d'autres styles
-             * mieux adaptés à la direction visuelle.
-             * MAIS il faut souligner l'état focus et le tester au clavier.
-             */
-            outline-offset: -5px;
-            outline: $bleuMinuit auto 5px;}
-        }
-
-        &__liste{
-            margin: 0;
-            padding: 0;
-            list-style: none;
-            max-height: none;
-            @media (min-width: 601px) {
-                &Item{
-                    display: inline-block;
-                }
-            }
-        }
-
-        &__lien{
-            border: 1px solid $bleuMinuit;
-            background-color: $bleuPale;
-            display: block;
-            padding: 5px 10px;
-            &:link,
-            &:visited{
-                text-decoration: none;
-                color: inherit;
-            }
-            &:hover,
-            &:active{
-                background-color: $bleuMoyen;
-            }
-            &:focus {
-                /*outline: none;
-                border-left: 5px solid #f5ae09;*/
-                outline-offset: -5px;
-                outline: #f5ae09 auto 5px;
-            }
-            &--actif{
-                border-left: 5px solid #f4d07c;
-               
-            }
-        }
-    }
-
-
-    /* Si le javascript est activé */
-    /* Pour des raisons d'accessibilité, on ne cache le menu mobile
-     * que si Javascript est activé. De cette façon, s'il est désactivé,
-     * le menu restera tout de même visible à l'utilisateur.
-     */
-.js .menu__liste {
-        max-height: 100vh;
-        overflow: hidden;
-        transition: max-height 0.5s;
-    }
-
-.js .menu--ferme .menu__liste {
-    max-height: 0;
-    @media (min-width: 601px) {
-        max-height: none;
-        }
-    }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 
 
+//menu burger
+
+.toggle-bouton{
+    display: flex;
+    justify-content: flex-end;
+   
+  
+    
+}
+
+.burger{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.75em 2em 1.5em 2em;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    width: 28px;
+    height: 20px;
+    transition:  all 250ms ease-out;
+    cursor: pointer;
+}
+
+
+.burger:before,
+.burger:after{
+    content: "";
+    width:40px;
+    height:2px;
+    position: absolute;
+    background-color: #000000;
+    transition: all 250ms ease-out;
+    will-change: transform;
+
+}
+.burger:before{
+    transform: translateY(-3px);
+}
+
+.burger:after{
+    transform: translateY(3px);
+}
+.active.burger:before{
+    background-color: white;
+    transform: translateY(0px) rotate(45deg);
+}
+.active.burger:after{
+    background-color: white;
+    transform: translateY(0px) rotate(-45deg);
+}
+
+.menu__liste{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+   margin: auto;
+    position: fixed;
+    gap: 1em;
+
+
+
+}
+.menu__lien{
+    font-size: 4em;
+    font-weight: 1000;
+    color: white;
+    text-decoration: none;
+    transition: all 250ms ease-out;
+    cursor: pointer;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+} 
+
+.menu{
+
+    z-index: 100;
+    position: fixed;
+   
+   
+  
+    padding: 50px;
+    width: 100vw;
+    height: 100vh;
+   
+  
+
+}	
+
+.char{
+    opacity: 0;
+}
+
+.menu__listeItem{
+    list-style: none;
+    display: flex;
+    text-decoration: none;
+    justify-content: space-between;
+   
+   
+}
+.menu__liste{
+   
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left;
+    height: 50%;  
+}
+.menu__lien{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 8rem;
+    font-weight: 1000;
+   
+}
+.menu__lien:hover{
+    color: rgb(255, 255, 255, 0.5);
+  
+    transition: all 0.5s;
+}
+
+.entete{
+    
+
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    height: 100vh;
+   
+}

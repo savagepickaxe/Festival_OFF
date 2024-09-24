@@ -10,7 +10,7 @@
 	<meta name="keyword" content="">
 	<meta name="author" content="">
 	<meta charset="utf-8">
-	<title>Un beau titre ici!</title>
+	<title>Festival Off</title>
 	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
 </head>
 
@@ -19,6 +19,8 @@
 	<?php include ($niveau . "liaisons/fragments/entete.inc.php");?>
 
 	<main>
+
+	
 		<div id="contenu" class="conteneur">
 			<h2>Entête de page</h2>
 
