@@ -12,10 +12,10 @@ if (stristr($_SERVER['HTTP_HOST'], 'local') || (substr($_SERVER['HTTP_HOST'], 0,
 // Selon l'environnement d'exécution (développement ou en ligne)
 if ($blnLocal) {
     //Local
-    $strHost = 'rpni_projet1_off';
-    $strBD='rpni_projet1_off';
-    $strUser = 'rpni_projet1_off';
-    $strPassword= 'rpni_projet1_off';
+    $strHost = 'localhost';
+    $strBD='rpni1_projet1_off';
+    $strUser = 'rpni1_projet1_off';
+    $strPassword= 'rpni1_projet1_off';
     error_reporting(E_ALL);
 } else {
     //en ligne
