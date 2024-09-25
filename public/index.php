@@ -1,4 +1,16 @@
 
+<?php  /*
+			$requeteSQL="Select titre from actualites";
+			$objStat=$objPdo -> prepare($requeteSQL);
+			$objStat -> execute();
+			$arrActualite=$objStat -> fetchAll();
+			forEach($arrActualite as $actualite){
+				echo $actualite["titre"];?><BR>
+			<?php } 
+			*/?> 
+
+
+
 <?php $niveau="./";?>
 <?php include ($niveau . "liaisons/php/config.inc.php");?>
 
@@ -22,38 +34,42 @@
 
 	
 		<div id="contenu" class="conteneur">
-			<h2>Entête de page</h2>
+			<section class="accueil">
+			<div class="gros-titre">
+				<div class="lignes ligne1">
+					<span>Festival</span>
+					<div class="bulle"></div>
+				</div>
+				<div class="lignes ligne2">
+					<span>Off</span>
+			</div>
+			</div>
+			<div class="image-menu">
+				<div class="video-background">
+					<div class="video-tour">
+						<video src="liaisons/videos/OFF.mp4"  
+						width="640" height="360" autoplay  loop muted  frameborder="0" allow="autoplay; encrypted-media"
+						 allowfullscreen>
+							
+</video>
+					</div>
+				</div>
+				<div class="h1-boite">
+					<div class="gros-titre hidden">OFF</div>
+					<div class="coin left-top"></div>
+					<div class="coin right-bottom"></div>
+				</div>
+			</div>
 
-			<?php
-			$requeteSQL="Select titre from actualites";
-			$objStat=$objPdo -> prepare($requeteSQL);
-			$objStat -> execute();
-			$arrActualite=$objStat -> fetchAll();
-			forEach($arrActualite as $actualite){
-				echo $actualite["titre"];?><BR>
-			<?php } ?>
+			</section>
+			
+
+
 
 			<section>
 				<h3>Entête de section</h3>
 				<article>
-					<header>
-						<h4>Entête d'article</h4>
-					</header>
-					<p>Lorem ipsum dolor HTML5 nunc aut nunquam sit amet, consectetur adipiscing elit. Vivamus at est eros, vel fringilla urna.</p>
-					<p>Per inceptos himenaeos. Quisque feugiat, justo at vehicula pellentesque, turpis lorem dictum nunc.</p>
-					<footer>
-						<h5>Pied d'article</h5>
-					</footer>
-				</article>
-				<article>
-					<header>
-						<h4>Entête d'article</h4>
-					</header>
-					<p>Lorem ipsum dolor nunc aut nunquam sit amet, consectetur adipiscing elit. Vivamus at est eros, vel fringilla urna. Pellentesque odio</p>
-					<footer>
-						<h5>Pied d'article</h5>
-					</footer>
-				</article>
+			
 			</section>
 		</div>
 	

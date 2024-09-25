@@ -22,3 +22,25 @@ $bleuMoyenTransparent : transparentize($bleuMoyen, 0.50);
 
 /** Points de rupture **/
 $desktop : 601px;
+:root{
+    /* Polices de caractères */
+    //Calcul padding
+    --container-padding: min(8vw, 8em);
+    --container-padding-small: var(--row-gap);
+    --row-gap: calc(var(--title-size)* 0.3);
+    --col-gap: calc(var(--title-size)* 0.3);
+
+    --border-radius: calc(var(--title-size)* 0.4);
+    --title-size: clamp(5em, 7.5vw, 7.5em);
+
+
+   
+
+    --container-padding-offset: calc(var(--container-padding) - var(--container-padding-small));
+
+    --color-light: white;
+    --color-light-rgb: 242, 237, 233;
+
+}
+
+   
