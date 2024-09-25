@@ -8,7 +8,7 @@
 </div>
 
 
-    <ul class="menu__liste">
+    <ul class="menu__liste hidden">
         <li class="menu__listeItem"><a href="<?php echo $niveau;?>index.php" class="menu__lien">Accueil</a></li>
         <li class="menu__listeItem"><a href="<?php echo $niveau;?>programmation/index.php" class="menu__lien">Programmation</a></li>
         <li class="menu__listeItem"><a href="<?php echo $niveau;?>artistes/index.php" class="menu__lien">Liste des artistes</a></li>

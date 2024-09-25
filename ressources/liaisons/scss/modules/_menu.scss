@@ -4,6 +4,14 @@
     box-sizing: border-box;
 }
 
+.visible{
+    display: flex !important;
+
+}
+.hidden{
+    display: none !important;
+}
+
 
 
 //menu burger

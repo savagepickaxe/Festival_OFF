@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   let texteMenu = document.querySelectorAll('.menu__lien');
   let container = document.querySelector('.entete');
+  let menuListe = document.querySelector('.menu__liste');
 
   texteMenu.forEach((element) => {
     const text = new SplitType(element, { types: 'words, chars' });
@@ -14,9 +15,12 @@ document.addEventListener("DOMContentLoaded", function() {
     let mots = document.querySelectorAll('.word');
     
     if(!boutonBurger.classList.contains("active")){
+    menuListe.classList.add('hidden');
+    menuListe.classList.remove('visible');
       // La timeline pour enlever header, animations des lettres dans chaque mot simultanément
       mots.forEach((mot) => {
         gsap.to(mot.querySelectorAll('.char'), {
+         
           opacity: 0,
           duration: 0.3,
           stagger: -0.025, // stagger les lettres dans le mot
@@ -31,6 +35,8 @@ document.addEventListener("DOMContentLoaded", function() {
          })
       });
     } else {
+      menuListe.classList.add('visible');
+      menuListe.classList.remove('hidden');
       gsap.to(container, {
         backgroundColor: 'rgba(17, 23, 28, 0.99)',
  

@@ -55,7 +55,7 @@
 					</div>
 				</div>
 				<div class="h1-boite">
-					<div class="gros-titre hidden">OFF</div>
+					<div class="gros-titre ">OFF</div>
 					<div class="coin left-top"></div>
 					<div class="coin right-bottom"></div>
 				</div>
