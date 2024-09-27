@@ -412,7 +412,7 @@ h3--desktop,
 .entete {
   position: fixed;
   width: 100%;
-  z-index: 1;
+  z-index: 33333333;
   height: 100vh;
 }
 
@@ -420,10 +420,26 @@ h3--desktop,
 .piedDePage {
   background-color: #68a8e8;
 }
+#container {
+  width: 100vw; /* 100% de la largeur de la fenêtre */
+  height: 100vh; /* 100% de la hauteur de la fenêtre */
+  position: absolute;
+  top: 0px;
+  transform: scale(1.5);
+  z-index: 1000;
+}
+
+#container canvas {
+  width: 100%;
+  height: 100%;
+  z-index: 90000;
+  position: absolute;
+}
+
 .accueil {
   padding-left: var(--container-padding);
   padding-right: var(--container-padding);
-  max-width: calc(var(--title-size) * 14);
+  max-width: calc(var(--title-size) * 18);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
