@@ -1,3 +1,21 @@
+#container{
+    width: 100vw;  /* 100% de la largeur de la fenêtre */
+    height: 100vh; /* 100% de la hauteur de la fenêtre */
+  
+    position: absolute;
+    top: 00px;
+    transform: scale(1.5);
+    z-index: 1000;
+}
+
+#container canvas{
+    width: 100%;
+    height: 100%;
+    z-index: 90000;
+    position: absolute;
+}
+
+
 
 .accueil{
   padding-left: var(--container-padding);
