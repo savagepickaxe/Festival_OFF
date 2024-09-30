@@ -23,7 +23,7 @@
 	<meta name="author" content="">
 	<meta charset="utf-8">
 	<title>Festival Off</title>
-	<?php include ($niveau . "liaisons/fragments/headlinks.inc.html");?>
+	<?php include ($niveau . "liaisons/fragments/headlinks.inc.php");?>
 </head>
 
 <body>

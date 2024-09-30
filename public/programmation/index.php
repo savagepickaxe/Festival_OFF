@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta charset="UTF-8">
     <title>Festival OFF - Programmation</title>
+    <?php include($niveau . "liaisons/fragments/headlinks.inc.php") ?>
 </head>
 
 <body>
