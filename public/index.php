@@ -32,7 +32,7 @@
 
 	<main>
 <div id="container"></div>
-	<script src="liaisons/js/script.js"></script>
+
 		<div id="contenu" class="conteneur">
 			<section class="accueil">
 			<div class="gros-titre">

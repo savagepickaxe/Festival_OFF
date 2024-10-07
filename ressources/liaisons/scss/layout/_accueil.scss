@@ -3,8 +3,8 @@
     height: 100vh; /* 100% de la hauteur de la fenêtre */
   
     position: absolute;
-    top: 00px;
-    transform: scale(1.5);
+    top: -100px;
+    transform: scale(1.5) translateY(-150px);
     z-index: 1000;
 }
 
