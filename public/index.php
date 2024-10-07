@@ -22,6 +22,7 @@
 	<meta charset="utf-8">
 	<title>Festival Off</title>
 	<?php include $niveau . "liaisons/php/config.inc.php"; ?>
+	<?php include $niveau . "liaisons/fragments/headlinks.inc.php"; ?>
 </head>
 
 <body>
