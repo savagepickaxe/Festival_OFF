@@ -20,19 +20,19 @@
             <h5 class="footer_menu-titre">Menu</h5>
             <ul class="footer_menu-list">
                 <li class="footer_list-item">
-                    <a class="naviguation_lien" href="">Accueil</a>
+                    <a class="naviguation_lien" href="<?php echo $niveau;?>index.php">Accueil</a>
                 </li>
                 <li class="footer_list-item">
-                    <a class="naviguation_lien" href="">Programmation</a>
+                    <a class="naviguation_lien" href="<?php echo $niveau;?>programmation/index.php">Programmation</a>
                 </li>
                 <li class="footer_list-item">
-                    <a class="naviguation_lien" href="">Artistes</a>
+                    <a class="naviguation_lien" href="<?php echo $niveau;?>artistes/index.php">Artistes</a>
                 </li>
                 <li class="footer_list-item">
-                    <a class="naviguation_lien" href="">Partenaires</a>
+                    <a class="naviguation_lien" href="<?php echo $niveau;?>">Partenaires</a>
                 </li>
                 <li class="footer_list-item">
-                    <a class="naviguation_lien" href="">Contact</a>
+                    <a class="naviguation_lien" href="<?php echo $niveau;?>">Contact</a>
                 </li>
             </ul>
         </div>
@@ -41,8 +41,8 @@
             <p class="footer_text">Festival OFF de Québec</p>
             <p class="footer_text">110 boulevard René-Lévesque Ouest, C.P. 48036 Québec, Québec G1R 5R5</p>
             <div class="footer_lien-group">
-                <a class="footer_lien" href="">Info@quebecoff.org</a>
-                <a class="footer_lien" href="">media@quebecoff.org</a>
+                <a class="footer_lien" href="https://www.quebecoff.org">Info@quebecoff.org</a>
+                <a class="footer_lien" href="https://www.instagram.com/festivaloffdequebec/">media@quebecoff.org</a>
             </div>
         </div>
     </div>
