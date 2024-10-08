@@ -79,8 +79,8 @@
      <a href="#" class="hyperlien">lien test!</a>
 	</main>
 
-	<footer>
+	
 		<?php include $niveau . "liaisons/fragments/piedDePage.inc.php"; ?>
-	</footer>
+
 </body>
 </html>
