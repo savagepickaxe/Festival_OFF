@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     let mots = document.querySelectorAll('.word');
     
+    if ($(window).width() > 960) {
+
     if(!boutonBurger.classList.contains("active")){
     menuListe.classList.add('hidden');
     menuListe.classList.remove('visible');
@@ -59,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
    
     }
-
+  }
     console.log(boutonBurger.classList);
   });
 

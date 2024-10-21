@@ -1,1 +1,88 @@
-//
+.entete {
+    background: #000F1C;
+    
+}
+
+.header_titre {
+    background: linear-gradient(90deg, #C95C5C 0%, #19628A 100%);
+    display: flex;
+    width: 100%;
+    height: 100px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.header_titre-text {
+    color: #FFF;
+    font-family: University;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 120% */
+    letter-spacing: 8px;
+}
+
+.bouton_acheter {
+    background: #6851FF;
+    color: white;
+    display: flex;
+    padding: 14px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    border-radius: 4px;
+}
+
+.menu {
+    background: #000F1C;
+    display: flex;
+    max-width: 960px;
+    height: 150px;
+    padding: 16px 20px;
+    margin: 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    gap: 66px;
+    flex-shrink: 0;
+}
+
+.header_top {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.menu__liste {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+}
+
+.menu__listeItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.menu__lien {
+    color: #FFF;
+    font-family: Inter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 24px; /* 120% */
+    padding-right: 24px;
+    background-image: url("../images/Expand.png");
+    background-position: right;
+    background-repeat: no-repeat;
+}
+
+@media (max-width: 900px) {
+    .menu__liste {
+    }
+}

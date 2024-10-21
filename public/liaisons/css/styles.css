@@ -308,7 +308,6 @@ h3--desktop,
 }
 
 .burger {
-  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -327,7 +326,6 @@ h3--desktop,
   content: "";
   width: 40px;
   height: 2px;
-  position: absolute;
   background-color: #000000;
   transition: all 250ms ease-out;
   will-change: transform;
@@ -356,7 +354,6 @@ h3--desktop,
   flex-direction: column;
   justify-content: center;
   margin: auto;
-  position: fixed;
   gap: 1em;
 }
 
@@ -372,7 +369,6 @@ h3--desktop,
 
 .menu {
   z-index: 100;
-  position: fixed;
   padding: 50px;
   width: 100vw;
   height: 100vh;
@@ -394,7 +390,6 @@ h3--desktop,
   flex-direction: column;
   justify-content: center;
   text-align: left;
-  height: 50%;
 }
 
 .menu__lien {
@@ -410,15 +405,223 @@ h3--desktop,
 }
 
 .entete {
-  position: fixed;
-  width: 100%;
   z-index: 33333333;
-  height: 100vh;
 }
 
 /****** LAYOUT *****************************/
+.entete {
+  background: #000F1C;
+}
+
+.header_titre {
+  background: linear-gradient(90deg, #C95C5C 0%, #19628A 100%);
+  display: flex;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header_titre-text {
+  color: #FFF;
+  font-family: University;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 120% */
+  letter-spacing: 8px;
+}
+
+.bouton_acheter {
+  background: #6851FF;
+  color: white;
+  display: flex;
+  padding: 14px 32px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  border-radius: 4px;
+}
+
+.menu {
+  background: #000F1C;
+  display: flex;
+  max-width: 960px;
+  height: 150px;
+  padding: 16px 20px;
+  margin: 0 auto;
+  justify-content: space-between;
+  align-items: center;
+  gap: 66px;
+  flex-shrink: 0;
+}
+
+.header_top {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.menu__liste {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+.menu__listeItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.menu__lien {
+  color: #FFF;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 120% */
+  padding-right: 24px;
+  background-image: url("../images/Expand.png");
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
 .piedDePage {
-  background-color: #68a8e8;
+  background-color: #000f1c;
+  width: 100%;
+  height: 400px;
+  padding: 60px 0;
+  flex-shrink: 0;
+}
+
+.footer_content {
+  color: white;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 960px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.copyright {
+  display: flex;
+  width: 200px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+  flex-shrink: 0;
+}
+
+.footer_menu {
+  display: flex;
+  width: 145px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+  flex-shrink: 0;
+}
+
+.footer_menu-titre {
+  color: #fff;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.footer_menu-list {
+  list-style: none;
+  flex-direction: column;
+}
+
+.footer_list-item {
+  margin-top: 15px;
+  color: #fff;
+  font-family: Inter;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.footer_contact {
+  display: flex;
+  width: 328px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 25px;
+  flex-shrink: 0;
+}
+
+.footer_lien-group {
+  color: #fff;
+  font-family: Roboto;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration-line: none;
+}
+
+.naviguation_lien {
+  text-decoration: none;
+  color: white;
+}
+
+.footer_lien {
+  color: white;
+}
+
+@media (max-width: 800px) {
+  .piedDePage {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+  }
+  .footer_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 0 10px;
+  }
+  .copyright {
+    display: flex;
+    width: 200px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    flex-shrink: 0;
+  }
+  .footer_menu {
+    display: flex;
+    width: 145px;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+  }
+  .footer_contact {
+    display: flex;
+    max-width: 340px;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    text-align: center;
+  }
 }
 #container {
   height: 100vh; /* 100% de la hauteur de la fenêtre */
@@ -585,6 +788,273 @@ h3--desktop,
   top: 0.5px;
   left: 0.5px;
   transform: translate(1007%, 398%) rotate(90deg);
+}
+
+.body {
+  background-color: #e7fce0;
+}
+
+.main_title {
+  color: #000;
+  text-align: center;
+  font-family: "Holtwood One SC";
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.main_head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 960px;
+  margin: 50px auto;
+}
+
+.main_main {
+  border-radius: 100px;
+  background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 100px;
+  margin: 100px 0;
+  padding: 100px;
+}
+
+/* Dropdown Button */
+.dropbtn {
+  border-radius: 4px;
+  background: #6851ff;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+  background-color: #3e8e41;
+}
+
+.dates_section {
+  border-radius: 25px;
+  border: 20px solid #d1ec7a;
+  background: #fff;
+  display: inline-flex;
+  height: 220px;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_dates-liste {
+  display: inline-flex;
+  height: 228.909px;
+  padding: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-shrink: 0;
+  list-style: none;
+}
+
+.dates_liste-item {
+  border-radius: 25px;
+  background: #3a6a45;
+  color: #d1ec7a;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+  display: flex;
+  width: 120px;
+  height: 120px;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dates_item-active {
+  border-radius: 25px;
+  background: #d1ec7a;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+  color: #3a6a45;
+}
+
+.dates_list-jour {
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.dates_list-date {
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.dates_list-mois {
+  text-align: center;
+  font-family: "IBM Plex Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.dates_button {
+  color: #3a6a45;
+  display: block;
+  width: 50px;
+  height: 50px;
+  background-image: url("../images/Arrow.png");
+  background-position: right;
+  background-repeat: no-repeat;
+}
+
+.next {
+  transform: rotate(180deg);
+}
+
+.artistes_section {
+  border-radius: 25px;
+  border: 20px solid #d1ec7a;
+  background: #fff;
+  display: flex;
+  width: 960px;
+  padding: 40px 50px;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.artistes_section-titre {
+  padding-left: 115px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url("../images/Ellipse 1.png");
+  background-position: left;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100px;
+}
+
+.main_artiste-titre {
+  color: #000;
+  font-family: Roboto;
+  font-size: 40px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 60% */
+  margin-bottom: 15px;
+}
+
+.main_artiste-soustitre {
+  color: #000;
+  font-family: Roboto;
+  font-size: 25px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 24px; /* 96% */
+}
+
+.artiste_horaire {
+  display: flex;
+  flex-direction: row;
+  width: 387px;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #F3F3F3;
+}
+
+.artiste_horaire-information {
+  display: flex;
+  width: 181px;
+  height: 139px;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-shrink: 0;
+}
+
+.style_artiste {
+  color: #3A6A45;
+  padding-left: 30px;
+  background-image: url("../images/Style.png");
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.permissionSlip {
+  color: #354E98;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 400;
+  padding-left: 30px;
+  background-image: url("../images/Permission.png");
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.artiste_horaire-time {
+  display: flex;
+  padding: 5px 20px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background: #3A6A45;
+  color: #D1EC7A;
+  font-family: Roboto;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  max-width: 100px;
 }
 
 /*# sourceMappingURL=styles.css.map */
