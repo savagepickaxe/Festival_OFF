@@ -421,11 +421,10 @@ h3--desktop,
   background-color: #68a8e8;
 }
 #container {
-  width: 100vw; /* 100% de la largeur de la fenêtre */
   height: 100vh; /* 100% de la hauteur de la fenêtre */
   position: absolute;
-  top: 0px;
-  transform: scale(1.5);
+  top: -100px;
+  transform: scale(1.5) translateY(-150px);
   z-index: 1000;
 }
 
@@ -586,4 +585,6 @@ h3--desktop,
   top: 0.5px;
   left: 0.5px;
   transform: translate(1007%, 398%) rotate(90deg);
-}/*# sourceMappingURL=styles.css.map */
+}
+
+/*# sourceMappingURL=styles.css.map */
