@@ -1,0 +1,53 @@
+.contenu__article {
+    border-radius: 100px;
+    background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 100px;
+    margin: 100px 0;
+    padding: 100px;
+    &__artiste{
+        border-radius: 25px;
+        border: 20px solid #d1ec7a;
+        background: #fff;
+        display: grid;
+        padding: 50px;
+        justify-content: center;
+        align-items: center;
+        /* Layout en grille avec 2 colonnes : image et texte */
+        grid-template-columns: repeat(2, 1fr); 
+        
+        gap: 50px;
+
+        &__preview{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            font-size: 2rem;
+            gap: 20px;
+            max-width: 80%;
+            margin-top: 20%;
+        }
+        &__image{
+            border-radius: 25px;
+            max-width: 100%;
+            height: auto;
+            min-width: 100%;
+            object-fit: cover;
+            align-self: baseline;
+        }
+        &__titre{
+            font-size: 3rem;
+            font-weight: 700;
+            justify-content: top;
+            position:absolute;
+        }
+        &__titreCont{
+           display: flex;
+              justify-content: flex-start;
+              align-self: baseline;
+        }
+        }
+     
+    }
