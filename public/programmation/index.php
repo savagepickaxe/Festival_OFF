@@ -10,13 +10,13 @@
     }
 
 	// Requete pour obtenire : Les ID des artistes et les Noms des artistes
-	$strRequeteUn =  'SELECT DISTINCT DAY(ti_evenement.date_et_heure) AS date_jour, MONTH(ti_evenement.date_et_heure) AS date_mois
-                        FROM ti_evenement
-                        ORDER BY ti_evenement.date_et_heure';
+	$strRequeteUn =  'SELECT DISTINCT DAY(evenements.date_et_heure) AS date_jour, MONTH(evenements.date_et_heure) AS date_mois, DAYOFWEEK(evenements.date_et_heure) AS date_jourSemaine
+                        FROM evenements
+                        ORDER BY evenements.date_et_heure';
 
-    $strRequeteDeux = 'SELECT t_lieu.id_lieu, t_lieu.nom_lieu
-                        FROM t_lieu
-                        ORDER BY t_lieu.nom_lieu';
+    $strRequeteDeux = 'SELECT lieux.id AS id_lieu, lieux.nom AS nom_lieu
+                        FROM lieux
+                        ORDER BY lieux.id';
 
 	// Artistes Suggerés -------------------------------------------------------------
 
@@ -24,6 +24,9 @@
     $pdosResultat = $pdoConnexion->prepare($strRequeteUn);
     $pdosResultat->execute(); //Stockage dans une array
     $arrDates = [];
+    $arrDaysofWeek = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+    $arrMonths = ['Janvier', 'Fevrier', 'Mars', 'Avril', 'May', 'Juin', 'Juillet', 'Aout', 'September', 'October', 'November', 'December'];
+
 
     $ligne = $pdosResultat->fetch();
 
@@ -31,6 +34,7 @@
         $arrDates[$cpt]['id_date'] = $cpt;
         $arrDates[$cpt]['date_jour'] = $ligne['date_jour'];
         $arrDates[$cpt]['date_mois'] = $ligne['date_mois'];
+        $arrDates[$cpt]['date_jourSemaine'] = $ligne['date_jourSemaine'];
         $ligne = $pdosResultat->fetch();
     }
     $pdosResultat->closeCursor();
@@ -48,10 +52,10 @@
         for ($cpt = 0; $cpt < $pdosResultat->rowCount(); $cpt++) {
             $arrLieux[$cpt]['id_lieu'] = $ligne['id_lieu'];
             $arrLieux[$cpt]['nom_lieu'] = $ligne['nom_lieu'];
-                $pdosResultatEvenement = $pdoConnexion->prepare('SELECT t_lieu.id_lieu, t_artiste.id_artiste, t_lieu.nom_lieu, t_artiste.nom_artiste, DAY(ti_evenement.date_et_heure) AS date_jour, HOUR(ti_evenement.date_et_heure) AS date_heure, MINUTE(ti_evenement.date_et_heure) AS date_minute
-                                                                FROM ti_evenement INNER JOIN t_lieu ON ti_evenement.id_lieu = t_lieu.id_lieu
-                                                                INNER JOIN t_artiste ON ti_evenement.id_artiste = t_artiste.id_artiste
-                                                                WHERE t_lieu.id_lieu =' . $arrLieux[$cpt]['id_lieu']);
+                $pdosResultatEvenement = $pdoConnexion->prepare('SELECT lieux.id AS id_lieu, artistes.id AS id_artiste, lieux.nom AS nom_lieu, artistes.nom AS nom_artiste, DAY(evenements.date_et_heure) AS date_jour, HOUR(evenements.date_et_heure) AS date_heure, MINUTE(evenements.date_et_heure) AS date_minute
+                                                                    FROM evenements INNER JOIN lieux ON evenements.id = lieux.id
+                                                                    INNER JOIN artistes ON evenements.id = artistes.id
+                                                                    WHERE lieux.id =' . $arrLieux[$cpt]['id_lieu']);
                 $pdosResultatEvenement->execute();
                 $ligneEvenement = $pdosResultatEvenement->fetch();
                 $arrEvenements = [];
@@ -68,9 +72,9 @@
                         // Afficher les styles de l'artiste sur une ligne --------------------------------------
                         $strStyles = "";
                         // Requete pour obtenire : Le Nom de style de l'artiste et L'ID du style de l'artiste présent
-                        $pdosResultatStyle = $pdoConnexion->prepare('SELECT t_style.id_style, t_style.nom_style, ti_style_artiste.id_artiste, ti_style_artiste.id_style AS ti_id_style
-                                                                        FROM ti_style_artiste INNER JOIN t_style ON ti_style_artiste.id_style = t_style.id_style 
-                                                                        WHERE ti_style_artiste.id_artiste =' . $arrEvenements[$cpt2]['id_artiste']);
+                        $pdosResultatStyle = $pdoConnexion->prepare('SELECT styles.id AS id_style, styles.nom AS nom_style, styles_artistes.artiste_id AS id_artiste, styles_artistes.style_id AS ti_id_style
+                                                                        FROM styles_artistes INNER JOIN styles ON styles_artistes.id = styles.id
+                                                                        WHERE styles_artistes.artiste_id =' . $arrEvenements[$cpt2]['id_artiste']);
                         $pdosResultatStyle->execute();
                         $ligneStyle = $pdosResultatStyle->fetch();
                         for ($cpt3 = 0; $cpt3 < $pdosResultatStyle->rowCount(); $cpt3++) {
@@ -92,10 +96,10 @@
         for ($cpt = 0; $cpt < $pdosResultat->rowCount(); $cpt++) {
             $arrLieux[$cpt]['id_lieu'] = $ligne['id_lieu'];
             $arrLieux[$cpt]['nom_lieu'] = $ligne['nom_lieu'];
-                $pdosResultatEvenement = $pdoConnexion->prepare('SELECT t_lieu.id_lieu, t_artiste.id_artiste, t_lieu.nom_lieu, t_artiste.nom_artiste, DAY(ti_evenement.date_et_heure) AS date_jour, HOUR(ti_evenement.date_et_heure) AS date_heure, MINUTE(ti_evenement.date_et_heure) AS date_minute
-                                                                FROM ti_evenement INNER JOIN t_lieu ON ti_evenement.id_lieu = t_lieu.id_lieu
-                                                                INNER JOIN t_artiste ON ti_evenement.id_artiste = t_artiste.id_artiste
-                                                                WHERE t_lieu.id_lieu =' . $arrLieux[$cpt]['id_lieu'] . ' AND DAY(ti_evenement.date_et_heure) =' . $strId . ' ORDER BY DAY(ti_evenement.date_et_heure)');
+                $pdosResultatEvenement = $pdoConnexion->prepare('SELECT lieux.id AS id_lieu, artistes.id AS id_artiste, lieux.nom AS nom_lieu, artistes.nom AS nom_artiste, DAY(evenements.date_et_heure) AS date_jour, HOUR(evenements.date_et_heure) AS date_heure, MINUTE(evenements.date_et_heure) AS date_minute
+                                                                    FROM evenements INNER JOIN lieux ON evenements.lieu_id = lieux.id
+                                                                    INNER JOIN artistes ON evenements.artiste_id = artistes.id
+                                                                    WHERE lieux.id =' . $arrLieux[$cpt]['id_lieu'] . ' AND DAY(evenements.date_et_heure) =' . $strId . ' ORDER BY DAY(evenements.date_et_heure)');
                 $pdosResultatEvenement->execute();
                 $ligneEvenement = $pdosResultatEvenement->fetch();
                 $arrEvenements = [];
@@ -113,9 +117,9 @@
                         // Afficher les styles de l'artiste sur une ligne --------------------------------------
                         $strStyles = "";
                         // Requete pour obtenire : Le Nom de style de l'artiste et L'ID du style de l'artiste présent
-                        $pdosResultatStyle = $pdoConnexion->prepare('SELECT t_style.id_style, t_style.nom_style, ti_style_artiste.id_artiste, ti_style_artiste.id_style AS ti_id_style
-                                                                        FROM ti_style_artiste INNER JOIN t_style ON ti_style_artiste.id_style = t_style.id_style 
-                                                                        WHERE ti_style_artiste.id_artiste =' . $arrEvenements[$cpt2]['id_artiste']);
+                        $pdosResultatStyle = $pdoConnexion->prepare('SELECT styles.id AS id_style, styles.nom AS nom_style, styles_artistes.artiste_id AS id_artiste, styles_artistes.style_id AS ti_id_style
+                                                                        FROM styles_artistes INNER JOIN styles ON styles_artistes.style_id = styles.id 
+                                                                        WHERE styles_artistes.artiste_id =' . $arrEvenements[$cpt2]['id_artiste']);
                         $pdosResultatStyle->execute();
                         $ligneStyle = $pdosResultatStyle->fetch();
                         for ($cpt3 = 0; $cpt3 < $pdosResultatStyle->rowCount(); $cpt3++) {
@@ -168,26 +172,15 @@
                 <section class="dates_section">
                     <a class="dates_button previous" href=""></a>
                     <ul class="main_dates-liste">
-                        <li class="dates_liste-item">
-                            <p class="dates_list-jour">Lun</p>
-                            <p class="dates_list-date">11</p>
-                            <p class="dates_list-mois">Juillet</p>
-                        </li>
-                        <li class="dates_liste-item">
-                            <p class="dates_list-jour">Mar</p>
-                            <p class="dates_list-date">12</p>
-                            <p class="dates_list-mois">Juillet</p>
-                        </li>
-                        <li class="dates_liste-item dates_item-active">
-                            <p class="dates_list-jour">Mer</p>
-                            <p class="dates_list-date">13</p>
-                            <p class="dates_list-mois">Juillet</p>
-                        </li>
-                        <li class="dates_liste-item">
-                            <p class="dates_list-jour">Jeu</p>
-                            <p class="dates_list-date">14</p>
-                            <p class="dates_list-mois">Juillet</p>
-                        </li>
+                        <?php for ($cpt = 0; $cpt < count($arrDates); $cpt++) { ; ?>
+                            <a href="index.php?id=<?php echo $arrDates[$cpt]['date_jour']; ?>">
+                                <li class="dates_liste-item">
+                                    <?php echo "<p class='dates_list-jour'>" . $arrDaysofWeek[$arrDates[$cpt]['date_jourSemaine']-1]. "<p>"; ?>
+                                    <?php echo "<p class='dates_list-date'>" . $arrDates[$cpt]['date_jour'] . "<p>"; ?>
+                                    <?php echo "<p class='dates_list-mois'>" . $arrMonths[$arrDates[$cpt]['date_mois']-1] . "<p>"; ?>
+                                </li>
+                            </a>
+                        <?php }?>
                     </ul>
                     <a class="dates_button next" href=""></a>
                 </section>
