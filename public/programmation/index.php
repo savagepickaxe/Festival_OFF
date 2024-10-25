@@ -12,7 +12,7 @@
 	// Requete pour obtenire : Les ID des artistes et les Noms des artistes
 	$strRequeteUn =  'SELECT DISTINCT DAY(evenements.date_et_heure) AS date_jour, MONTH(evenements.date_et_heure) AS date_mois, DAYOFWEEK(evenements.date_et_heure) AS date_jourSemaine
                         FROM evenements
-                        ORDER BY evenements.date_et_heure';
+                        ORDER BY DAY(evenements.date_et_heure)';
 
     $strRequeteDeux = 'SELECT lieux.id AS id_lieu, lieux.nom AS nom_lieu
                         FROM lieux
@@ -186,18 +186,25 @@
                 </section>
                 <section class="horaires_section">
                     <div class="artistes_section">
+
+                    <h2 class="h2 main_artiste-titre"><?php echo $arrLieux[$cpt]['nom_lieu'] ?></h2>
+
+                    <div class="artistes_section">
                         <div class="artistes_section-titre">
                             <h2 class="h2 main_artiste-titre">Ninkasi du Faubourg</h2>
                             <h3 class="h3 main_artiste-soustitre">801-811 rue Saint-Jean, Québec</h3>
                         </div>
+
                         <div class="artiste_horaire">
-                            <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                            <div class="artiste_horaire-information">
-                                <h4 class="h4 main_artiste-nom">Jah & I</h4>
-                                <p class="style_artiste">Rap</p>
-                                <p class="permissionSlip">Laisser Passer Requis</p>
-                                <p class="artiste_horaire-time">18h00</p>
-                            </div>
+                            <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
+                                <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
+                                <div class="artiste_horaire-information">
+                                    <h4 class="h4 main_artiste-nom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
+                                    <p class="style_artiste"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
+                                    <p class="permissionSlip"><?php echo "Requis"; ?></p>
+                                    <p class="artiste_horaire-time"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
+                                </div>
+                            <?php }?>
                         </div>
                         <div class="artiste_horaire">
                             <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
