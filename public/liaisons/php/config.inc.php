@@ -30,11 +30,11 @@ if ($blnLocal) {
 //Data Source Name pour l'objet PDO
 $strDsn = 'mysql:dbname='.$strBD.';host='.$strHost;
 //Tentative de connexion
-$objPdo = new PDO($strDsn, $strUser, $strPassword);
+$pdoConnexion = new PDO($strDsn, $strUser, $strPassword);
 //Changement d'encodage de l'ensemble des caractères pour UTF-8
-$objPdo->exec("SET CHARACTER SET utf8");
-//Pour obtenir des rapports d'erreurs et d'exception avec errorInfo() du pilote PDO
-$objPdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-//$objPdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
+$pdoConnexion->exec("SET CHARACTER SET utf8");
+//Pour obtenir des rapports d'erreurs et d'exception avec errorInfo()
+$pdoConnexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+//$pdoConnexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_SILENT);
 
 ?>

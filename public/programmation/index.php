@@ -1,4 +1,142 @@
 <?php $niveau="../";?>
+<?php
+	// Inclusion du fichier de configuration de l'endroit
+	include($niveau.'liaisons/php/config.inc.php');
+
+    if (isset($_GET['id']) == true) {
+        $strId = $_GET['id'];
+    } else {
+        $strId = 0;
+    }
+
+	// Requete pour obtenire : Les ID des artistes et les Noms des artistes
+	$strRequeteUn =  'SELECT DISTINCT DAY(ti_evenement.date_et_heure) AS date_jour, MONTH(ti_evenement.date_et_heure) AS date_mois
+                        FROM ti_evenement
+                        ORDER BY ti_evenement.date_et_heure';
+
+    $strRequeteDeux = 'SELECT t_lieu.id_lieu, t_lieu.nom_lieu
+                        FROM t_lieu
+                        ORDER BY t_lieu.nom_lieu';
+
+	// Artistes Suggerés -------------------------------------------------------------
+
+
+    $pdosResultat = $pdoConnexion->prepare($strRequeteUn);
+    $pdosResultat->execute(); //Stockage dans une array
+    $arrDates = [];
+
+    $ligne = $pdosResultat->fetch();
+
+    for ($cpt = 0; $cpt < $pdosResultat->rowCount(); $cpt++) {
+        $arrDates[$cpt]['id_date'] = $cpt;
+        $arrDates[$cpt]['date_jour'] = $ligne['date_jour'];
+        $arrDates[$cpt]['date_mois'] = $ligne['date_mois'];
+        $ligne = $pdosResultat->fetch();
+    }
+    $pdosResultat->closeCursor();
+
+
+
+    // ----------------
+    $pdosResultat = $pdoConnexion->prepare($strRequeteDeux);
+    $pdosResultat->execute(); //Stockage dans une array
+    $arrLieux = [];
+
+    $ligne = $pdosResultat->fetch();
+
+    if ($strId == 0) {
+        for ($cpt = 0; $cpt < $pdosResultat->rowCount(); $cpt++) {
+            $arrLieux[$cpt]['id_lieu'] = $ligne['id_lieu'];
+            $arrLieux[$cpt]['nom_lieu'] = $ligne['nom_lieu'];
+                $pdosResultatEvenement = $pdoConnexion->prepare('SELECT t_lieu.id_lieu, t_artiste.id_artiste, t_lieu.nom_lieu, t_artiste.nom_artiste, DAY(ti_evenement.date_et_heure) AS date_jour, HOUR(ti_evenement.date_et_heure) AS date_heure, MINUTE(ti_evenement.date_et_heure) AS date_minute
+                                                                FROM ti_evenement INNER JOIN t_lieu ON ti_evenement.id_lieu = t_lieu.id_lieu
+                                                                INNER JOIN t_artiste ON ti_evenement.id_artiste = t_artiste.id_artiste
+                                                                WHERE t_lieu.id_lieu =' . $arrLieux[$cpt]['id_lieu']);
+                $pdosResultatEvenement->execute();
+                $ligneEvenement = $pdosResultatEvenement->fetch();
+                $arrEvenements = [];
+    
+                for ($cpt2 = 0; $cpt2 < $pdosResultatEvenement->rowCount(); $cpt2++) {
+                    if ($ligneEvenement['date_minute'] == "0") {
+                        $ligneEvenement['date_minute'] = "00";
+                    }
+                    $arrEvenements[$cpt2]['heure'] = $ligneEvenement['date_heure'];
+                    $arrEvenements[$cpt2]['minute'] = $ligneEvenement['date_minute'];
+                    $arrEvenements[$cpt2]['artiste'] = $ligneEvenement['nom_artiste'];
+                    $arrEvenements[$cpt2]['id_artiste'] = $ligneEvenement['id_artiste'];
+
+                        // Afficher les styles de l'artiste sur une ligne --------------------------------------
+                        $strStyles = "";
+                        // Requete pour obtenire : Le Nom de style de l'artiste et L'ID du style de l'artiste présent
+                        $pdosResultatStyle = $pdoConnexion->prepare('SELECT t_style.id_style, t_style.nom_style, ti_style_artiste.id_artiste, ti_style_artiste.id_style AS ti_id_style
+                                                                        FROM ti_style_artiste INNER JOIN t_style ON ti_style_artiste.id_style = t_style.id_style 
+                                                                        WHERE ti_style_artiste.id_artiste =' . $arrEvenements[$cpt2]['id_artiste']);
+                        $pdosResultatStyle->execute();
+                        $ligneStyle = $pdosResultatStyle->fetch();
+                        for ($cpt3 = 0; $cpt3 < $pdosResultatStyle->rowCount(); $cpt3++) {
+                            // Accumuler les styles de l'artiste
+                            $strStyles .= $ligneStyle['nom_style'] . ", ";
+                            $ligneStyle = $pdosResultatStyle->fetch();
+                        }
+                        // Enlever la virgule a la fin de la liste des styles de l'artiste
+
+                    $arrEvenements[$cpt2]['styles'] = substr_replace($strStyles, "", -2);;
+                    $ligneEvenement = $pdosResultatEvenement->fetch();
+                }
+            $ligne = $pdosResultat->fetch();
+            $arrLieux[$cpt]['info'] = $arrEvenements;
+        }
+    
+        $pdosResultat->closeCursor();
+    } else {
+        for ($cpt = 0; $cpt < $pdosResultat->rowCount(); $cpt++) {
+            $arrLieux[$cpt]['id_lieu'] = $ligne['id_lieu'];
+            $arrLieux[$cpt]['nom_lieu'] = $ligne['nom_lieu'];
+                $pdosResultatEvenement = $pdoConnexion->prepare('SELECT t_lieu.id_lieu, t_artiste.id_artiste, t_lieu.nom_lieu, t_artiste.nom_artiste, DAY(ti_evenement.date_et_heure) AS date_jour, HOUR(ti_evenement.date_et_heure) AS date_heure, MINUTE(ti_evenement.date_et_heure) AS date_minute
+                                                                FROM ti_evenement INNER JOIN t_lieu ON ti_evenement.id_lieu = t_lieu.id_lieu
+                                                                INNER JOIN t_artiste ON ti_evenement.id_artiste = t_artiste.id_artiste
+                                                                WHERE t_lieu.id_lieu =' . $arrLieux[$cpt]['id_lieu'] . ' AND DAY(ti_evenement.date_et_heure) =' . $strId . ' ORDER BY DAY(ti_evenement.date_et_heure)');
+                $pdosResultatEvenement->execute();
+                $ligneEvenement = $pdosResultatEvenement->fetch();
+                $arrEvenements = [];
+                $arrStylesArtiste = [];
+
+                for ($cpt2 = 0; $cpt2 < $pdosResultatEvenement->rowCount(); $cpt2++) {
+                    if ($ligneEvenement['date_minute'] == "0") {
+                        $ligneEvenement['date_minute'] = "00";
+                    }
+                    $arrEvenements[$cpt2]['heure'] = $ligneEvenement['date_heure'];
+                    $arrEvenements[$cpt2]['minute'] = $ligneEvenement['date_minute'];
+                    $arrEvenements[$cpt2]['artiste'] = $ligneEvenement['nom_artiste'];
+                    $arrEvenements[$cpt2]['id_artiste'] = $ligneEvenement['id_artiste'];
+
+                        // Afficher les styles de l'artiste sur une ligne --------------------------------------
+                        $strStyles = "";
+                        // Requete pour obtenire : Le Nom de style de l'artiste et L'ID du style de l'artiste présent
+                        $pdosResultatStyle = $pdoConnexion->prepare('SELECT t_style.id_style, t_style.nom_style, ti_style_artiste.id_artiste, ti_style_artiste.id_style AS ti_id_style
+                                                                        FROM ti_style_artiste INNER JOIN t_style ON ti_style_artiste.id_style = t_style.id_style 
+                                                                        WHERE ti_style_artiste.id_artiste =' . $arrEvenements[$cpt2]['id_artiste']);
+                        $pdosResultatStyle->execute();
+                        $ligneStyle = $pdosResultatStyle->fetch();
+                        for ($cpt3 = 0; $cpt3 < $pdosResultatStyle->rowCount(); $cpt3++) {
+                            // Accumuler les styles de l'artiste
+                            $strStyles .= $ligneStyle['nom_style'] . ", ";
+                            $ligneStyle = $pdosResultatStyle->fetch();
+                        }
+                        // Enlever la virgule a la fin de la liste des styles de l'artiste
+
+                    $arrEvenements[$cpt2]['styles'] = substr_replace($strStyles, "", -2);;
+                    $ligneEvenement = $pdosResultatEvenement->fetch();
+                }
+            $ligne = $pdosResultat->fetch();
+            $arrLieux[$cpt]['info'] = $arrEvenements;
+        }
+    
+        $pdosResultat->closeCursor();
+    }
+
+   
+?>
 <!DOCTYPE html>
 <html lang="fr">
     <head>
