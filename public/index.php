@@ -134,19 +134,24 @@
 
 			
 		
-			<div id="contenu" class="conteneur">
+			<div id="contenu" class="contenu__article">
+				
 			<section class="article">
-				<h2>Articles</h2>
+				
 				<?php foreach($arrArticles as $article){ ?>
-					<article>
-						<header>
-							<h3><?php echo $article['titre'];?></h3>
+					
+					<article class="contenu__article__artiste">
+					<header class="contenu__article__artiste__titreCont">
+							<h3 class="contenu__article__artiste__titre"><?php echo $article['titre'];?></h3>
 						</header>
-						<p>
+					<img class="contenu__article__artiste__image" src="liaisons/images/Image.png" alt="">
+
+						<p class="contenu__article__artiste__preview">
 							<?php echo $article['article_preview'];?>
 							<a href="#">...</a>
 						</p>
-						<footer>
+
+						<footer class="contenu__article__artiste__footer">
 							<p> <?php echo $article['auteurs']; ?></p>
 							<time datetime="<?php echo $article['date_complete'];?>">
 								<?php echo "Le " . $article['jour'] . " " . $arrMois[$article['mois'] - 1] . " " . $article['annee'] . " à " . $article['heure'] . "h" . $article['minute'];?>
@@ -155,6 +160,8 @@
 					</article>
 				<?php } ?>
 			</section>
+
+
 			<section class="suggestions">
 				<h2>Artistes suggérés</h2>
 				<ul>
