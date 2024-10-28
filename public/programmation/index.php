@@ -183,7 +183,7 @@
                     <a class="dates_button next" href=""></a>
                 </section>
                 <?php for ($cpt = 0; $cpt < count($arrLieux); $cpt++) { ; ?>
-                    <section class="horaires_section" id="animation">
+                    <section class="horaires_section">
                             <div class="artistes_section">
                                 <div class="artistes_section-titre">
                                     <h2 class="h2 main_artiste-titre"><?php echo $arrLieux[$cpt]['nom_lieu']; ?></h2>
@@ -192,18 +192,18 @@
                                 <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
                                     <?php if (count($arrLieux[$cpt]['info']) == 0) { ?>
                                         <p>Rien</p>
-                                    <?php } else { ?>     
-                                        <div class="artiste_horaire">
-                                            <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php  $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>">
+                                    <?php } else { ?>
+                                        <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>" class="lien_artiste lien_sans-deco">
+                                            <div class="artiste_horaire">
                                                 <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                                                <div class="artiste_horaire-information"><a href="">
+                                                <div class="artiste_horaire-information">
                                                     <h4 class="h4 main_artiste-nom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
                                                     <p class="style_artiste"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
                                                     <p class="permissionSlip"><?php echo "Requis"; ?></p>
                                                     <p class="artiste_horaire-time"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
                                                 </div>
-                                            </a>
-                                        </div>
+                                            </div>
+                                        </a>
                                     <?php }?>
                                 <?php }?>
                             </div>
