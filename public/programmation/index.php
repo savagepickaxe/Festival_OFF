@@ -194,13 +194,15 @@
                                         <p>Rien</p>
                                     <?php } else { ?>     
                                         <div class="artiste_horaire">
-                                            <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                                            <div class="artiste_horaire-information">
-                                                <h4 class="h4 main_artiste-nom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
-                                                <p class="style_artiste"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
-                                                <p class="permissionSlip"><?php echo "Requis"; ?></p>
-                                                <p class="artiste_horaire-time"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
-                                            </div>
+                                            <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php  $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>">
+                                                <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
+                                                <div class="artiste_horaire-information"><a href="">
+                                                    <h4 class="h4 main_artiste-nom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
+                                                    <p class="style_artiste"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
+                                                    <p class="permissionSlip"><?php echo "Requis"; ?></p>
+                                                    <p class="artiste_horaire-time"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
+                                                </div>
+                                            </a>
                                         </div>
                                     <?php }?>
                                 <?php }?>
