@@ -183,7 +183,7 @@
                     <a class="dates_button next" href=""></a>
                 </section>
                 <?php for ($cpt = 0; $cpt < count($arrLieux); $cpt++) { ; ?>
-                    <section class="horaires_section">
+                    <section class="horaires_section" id="animation">
                             <div class="artistes_section">
                                 <div class="artistes_section-titre">
                                     <h2 class="h2 main_artiste-titre"><?php echo $arrLieux[$cpt]['nom_lieu']; ?></h2>

@@ -102,6 +102,19 @@
     list-style: none;
 }
 
+.dates_liste-item-active {
+    border-radius: 25px;
+    background: #d1ec7a;
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    color: #3a6a45;
+    width: 120px;
+    height: 120px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .dates_liste-item {
     border-radius: 25px;
     background: #3a6a45;
@@ -156,6 +169,14 @@
     background-image: url("../images/Arrow.png");
     background-position: right;
     background-repeat: no-repeat;
+}
+
+.lien_sans-deco {
+    text-decoration: none;
+}
+
+.date_lien {
+    text-decoration: none;
 }
 
 .next {
@@ -261,8 +282,4 @@
     font-style: normal;
     font-weight: 400;
     max-width: 100px;
-}
-
-.lien_sans-deco {
-    text-decoration: none;
 }
