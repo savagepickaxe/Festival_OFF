@@ -116,7 +116,7 @@
     align-items: center;
 }
 
-.dates_item-active {
+.date_lien:hover .dates_liste-item {
     border-radius: 25px;
     background: #d1ec7a;
     box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
@@ -194,7 +194,7 @@
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
-    line-height: 24px; /* 60% */
+    line-height: 35px; /* 60% */
     margin-bottom: 15px;
 }
 
@@ -261,4 +261,8 @@
     font-style: normal;
     font-weight: 400;
     max-width: 100px;
+}
+
+.lien_sans-deco {
+    text-decoration: none;
 }
