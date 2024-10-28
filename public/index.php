@@ -135,6 +135,7 @@
 			
 		
 			<div id="contenu" class="contenu__article">
+				
 			<section class="article">
 				<h2>Articles</h2>
 				<?php foreach($arrArticles as $article){ ?>
