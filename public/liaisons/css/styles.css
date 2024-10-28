@@ -1066,6 +1066,7 @@ h3--desktop,
   gap: 100px;
   margin: 100px 0;
   padding: 100px;
+  margin-bottom: 50px;
 }
 .contenu__article__artiste {
   border-radius: 25px;
@@ -1077,16 +1078,16 @@ h3--desktop,
   align-items: center;
   /* Layout en grille avec 2 colonnes : image et texte */
   grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 50px;
   gap: 50px;
 }
 .contenu__article__artiste__preview {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-size: 2rem;
+  font-size: 2.3rem;
   gap: 20px;
   max-width: 80%;
-  margin-top: 20%;
 }
 .contenu__article__artiste__image {
   border-radius: 25px;
@@ -1100,12 +1101,21 @@ h3--desktop,
   font-size: 3rem;
   font-weight: 700;
   justify-content: top;
-  position: absolute;
 }
 .contenu__article__artiste__titreCont {
   display: flex;
   justify-content: flex-start;
   align-self: baseline;
+  grid-column: 1/span 2;
+}
+.contenu__article__artiste__footer {
+  height: 100%;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.article {
+  margin-bottom: 50px;
 }
 
 /*# sourceMappingURL=styles.css.map */
