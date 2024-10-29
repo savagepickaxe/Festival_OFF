@@ -8,6 +8,10 @@
     margin: 100px 0;
     padding: 100px;
     margin-bottom: 50px;
+    @media(max-width:768px){
+        margin-top: 20px;
+        padding: 30px;
+    }
     &__artiste{
         border-radius: 25px;
         border: 20px solid #d1ec7a;
@@ -15,20 +19,30 @@
         display: grid;
         padding: 50px;
         justify-content: center;
-        align-items: center;
+   
         /* Layout en grille avec 2 colonnes : image et texte */
         grid-template-columns: repeat(2, 1fr); 
       margin-bottom: 50px;
         
         gap: 50px;
+        @media(max-width:768px){
+           display: flex;
+           flex-direction: column;
+           border:10px solid #d1ec7a;
+              padding: 20px;
+        }
 
         &__preview{
             display: flex;
             flex-direction: column;
-            justify-content: center;
             font-size: 2.3rem;
             gap: 20px;
             max-width: 80%;
+
+            @media(max-width:768px){
+                max-width: 100%;
+                line-height: 28px;
+            }
            
         }
         &__image{
@@ -39,6 +53,10 @@
             object-fit: cover;
             align-self: baseline;
         
+            @media (max-width: 768px){
+                max-width: 100%;
+                min-width: 100%;
+            }
             
         }
         &__titre{
