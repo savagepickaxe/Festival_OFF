@@ -33,6 +33,8 @@
 /* Couleurs de base */
 /* Autres couleurs */
 /** Points de rupture **/
+@import url("https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 :root {
   /* Polices de caractères */
   --container-padding: min(8vw, 8em);
@@ -92,6 +94,7 @@
 /**
 * @author Prenom Nom courriel
 */
+/******** Importations *********/
 /******** Typographie *********/
 @font-face {
   font-family: Roboto, sans-serif;
@@ -103,7 +106,7 @@ html {
 }
 
 body {
-  font-family: Arial, sans-serif;
+  font-family: Roboto, sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
   /* 16px pour toutes les largeurs d'écran */
@@ -168,7 +171,7 @@ h3--desktop,
 }
 
 .texte {
-  font-family: Arial, sans-serif;
+  font-family: "IBM Plex Mono", monospace;
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 1.375;
@@ -1201,4 +1204,50 @@ h3--desktop,
 
 .article {
   margin-bottom: 50px;
-}/*# sourceMappingURL=styles.css.map */
+}
+
+.infoArtiste {
+  background: linear-gradient(#7c004a 17.31%, #2c695f 82.12%);
+  padding: 100px 220px;
+  border-radius: 100px;
+  color: #D1EC7A;
+}
+.infoArtiste__nom {
+  font-family: "Holtwood One SC", serif;
+  font-size: 70px;
+  font-size: 7rem;
+  text-transform: uppercase;
+  text-align: center;
+}
+.infoArtiste__styles {
+  font-family: "ibm plex mono";
+  font-size: 20px;
+  font-size: 2rem;
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+  border: solid 2px #D1EC7A;
+  border-radius: 30px;
+}
+.infoArtiste__provenance {
+  font-size: 36px;
+  font-size: 3.6rem;
+  text-align: center;
+  text-transform: lowercase;
+}
+.infoArtiste__provenance--smallSize {
+  font-size: 22px;
+  font-size: 2.2rem;
+  text-transform: lowercase;
+}
+.infoArtiste__biographie {
+  max-width: 660px;
+  margin: 90px auto 0 auto;
+}
+.infoArtiste img {
+  display: block;
+}
+
+/*# sourceMappingURL=styles.css.map */
