@@ -125,8 +125,7 @@
                             $strStyles .= $ligneStyle['nom_style'] . ", ";
                             $ligneStyle = $pdosResultatStyle->fetch();
                         }
-                        // Enlever la virgule a la fin de la liste des styles de l'artiste
-
+                    // Enlever la virgule a la fin de la liste des styles de l'artiste
                     $arrEvenements[$cpt2]['styles'] = substr_replace($strStyles, "", -2);;
                     $ligneEvenement = $pdosResultatEvenement->fetch();
                 }
