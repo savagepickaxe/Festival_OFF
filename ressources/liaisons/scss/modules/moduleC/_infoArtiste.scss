@@ -1,0 +1,44 @@
+.infoArtiste{
+    background: linear-gradient(#7c004a 17.31%, #2c695f 82.12%);
+    padding:  100px 220px;
+    border-radius: 100px;
+    color: #D1EC7A;
+
+    &__nom{
+        font-family: $fonteTitre;
+        @include fontSize(70px);
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    &__styles{
+        font-family: 'ibm plex mono';
+        @include fontSize(20px);
+        display: inline-block;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 10px 20px;
+        border: solid 2px #D1EC7A;
+        border-radius: 30px;
+    }
+
+    &__provenance{
+        @include fontSize(36px);
+        text-align: center;
+        text-transform: lowercase;
+        
+        &--smallSize{
+            @include fontSize(22px);
+            text-transform: lowercase;
+        }
+    }
+
+    &__biographie{
+        max-width: 660px;
+        margin: 90px auto 0 auto;
+    }
+    img{
+        display: block;
+    }
+}

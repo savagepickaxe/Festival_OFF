@@ -102,6 +102,19 @@
     list-style: none;
 }
 
+.dates_liste-item-active {
+    border-radius: 25px;
+    background: #d1ec7a;
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    color: #3a6a45;
+    width: 120px;
+    height: 120px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .dates_liste-item {
     border-radius: 25px;
     background: #3a6a45;
@@ -116,7 +129,7 @@
     align-items: center;
 }
 
-.dates_item-active {
+.date_lien:hover .dates_liste-item {
     border-radius: 25px;
     background: #d1ec7a;
     box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
@@ -158,6 +171,14 @@
     background-repeat: no-repeat;
 }
 
+.lien_sans-deco {
+    text-decoration: none;
+}
+
+.date_lien {
+    text-decoration: none;
+}
+
 .next {
     transform: rotate(180deg);
 }
@@ -174,6 +195,10 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 40px;
+}
+
+.main_artiste-nom {
+    color: black;
 }
 
 .artistes_section-titre {
@@ -194,7 +219,7 @@
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
-    line-height: 24px; /* 60% */
+    line-height: 35px; /* 60% */
     margin-bottom: 15px;
 }
 

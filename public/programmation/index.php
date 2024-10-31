@@ -14,7 +14,7 @@
 
     $strRequeteDeux = 'SELECT lieux.id AS id_lieu, lieux.nom AS nom_lieu
                         FROM lieux
-                        ORDER BY lieux.id';
+                        ORDER BY lieux.nom';
 
 	// Artistes Suggerés -------------------------------------------------------------
 
@@ -51,8 +51,8 @@
             $arrLieux[$cpt]['id_lieu'] = $ligne['id_lieu'];
             $arrLieux[$cpt]['nom_lieu'] = $ligne['nom_lieu'];
                 $pdosResultatEvenement = $pdoConnexion->prepare('SELECT lieux.id AS id_lieu, artistes.id AS id_artiste, lieux.nom AS nom_lieu, artistes.nom AS nom_artiste, DAY(evenements.date_et_heure) AS date_jour, HOUR(evenements.date_et_heure) AS date_heure, MINUTE(evenements.date_et_heure) AS date_minute
-                                                                    FROM evenements INNER JOIN lieux ON evenements.id = lieux.id
-                                                                    INNER JOIN artistes ON evenements.id = artistes.id
+                                                                    FROM evenements INNER JOIN lieux ON evenements.lieu_id = lieux.id
+                                                                    INNER JOIN artistes ON evenements.artiste_id = artistes.id
                                                                     WHERE lieux.id =' . $arrLieux[$cpt]['id_lieu']);
                 $pdosResultatEvenement->execute();
                 $ligneEvenement = $pdosResultatEvenement->fetch();
@@ -71,7 +71,7 @@
                         $strStyles = "";
                         // Requete pour obtenire : Le Nom de style de l'artiste et L'ID du style de l'artiste présent
                         $pdosResultatStyle = $pdoConnexion->prepare('SELECT styles.id AS id_style, styles.nom AS nom_style, styles_artistes.artiste_id AS id_artiste, styles_artistes.style_id AS ti_id_style
-                                                                        FROM styles_artistes INNER JOIN styles ON styles_artistes.id = styles.id
+                                                                        FROM styles_artistes INNER JOIN styles ON styles_artistes.style_id = styles.id
                                                                         WHERE styles_artistes.artiste_id =' . $arrEvenements[$cpt2]['id_artiste']);
                         $pdosResultatStyle->execute();
                         $ligneStyle = $pdosResultatStyle->fetch();
@@ -125,8 +125,7 @@
                             $strStyles .= $ligneStyle['nom_style'] . ", ";
                             $ligneStyle = $pdosResultatStyle->fetch();
                         }
-                        // Enlever la virgule a la fin de la liste des styles de l'artiste
-
+                    // Enlever la virgule a la fin de la liste des styles de l'artiste
                     $arrEvenements[$cpt2]['styles'] = substr_replace($strStyles, "", -2);;
                     $ligneEvenement = $pdosResultatEvenement->fetch();
                 }
@@ -171,7 +170,7 @@
                     <a class="dates_button previous" href=""></a>
                     <ul class="main_dates-liste">
                         <?php for ($cpt = 0; $cpt < count($arrDates); $cpt++) { ; ?>
-                            <a href="index.php?id=<?php echo $arrDates[$cpt]['date_jour']; ?>">
+                            <a href="index.php?id=<?php echo $arrDates[$cpt]['date_jour']; ?>" class="date_lien lien_sans-deco">
                                 <li class="dates_liste-item">
                                     <?php echo "<p class='dates_list-jour'>" . $arrDaysofWeek[$arrDates[$cpt]['date_jourSemaine']-1]. "<p>"; ?>
                                     <?php echo "<p class='dates_list-date'>" . $arrDates[$cpt]['date_jour'] . "<p>"; ?>
@@ -182,58 +181,34 @@
                     </ul>
                     <a class="dates_button next" href=""></a>
                 </section>
-                <section class="horaires_section">
-                    <div class="artistes_section">
-
-                    <h2 class="h2 main_artiste-titre"><?php echo $arrLieux[$cpt]['nom_lieu'] ?></h2>
-
-                    <div class="artistes_section">
-                        <div class="artistes_section-titre">
-                            <h2 class="h2 main_artiste-titre">Ninkasi du Faubourg</h2>
-                            <h3 class="h3 main_artiste-soustitre">801-811 rue Saint-Jean, Québec</h3>
-                        </div>
-
-                        <div class="artiste_horaire">
-                            <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
-                                <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                                <div class="artiste_horaire-information">
-                                    <h4 class="h4 main_artiste-nom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
-                                    <p class="style_artiste"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
-                                    <p class="permissionSlip"><?php echo "Requis"; ?></p>
-                                    <p class="artiste_horaire-time"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
+                <?php for ($cpt = 0; $cpt < count($arrLieux); $cpt++) { ; ?>
+                    <section class="horaires_section">
+                            <div class="artistes_section">
+                                <div class="artistes_section-titre">
+                                    <h2 class="h2 main_artiste-titre"><?php echo $arrLieux[$cpt]['nom_lieu']; ?></h2>
+                                    <h3 class="h3 main_artiste-soustitre">801-811 rue Saint-Jean, Québec</h3>
                                 </div>
-                            <?php }?>
-                        </div>
-                        <div class="artiste_horaire">
-                            <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                            <div class="artiste_horaire-information">
-                                <h4 class="h4 main_artiste-nom">Jah & I</h4>
-                                <p class="style_artiste">Rap</p>
-                                <p class="permissionSlip">Laisser Passer Requis</p>
-                                <p class="artiste_horaire-time">18h00</p>
+                                <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
+                                    <?php if (count($arrLieux[$cpt]['info']) == 0) { ?>
+                                        <p>Rien</p>
+                                    <?php } else { ?>
+                                        <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>" class="lien_artiste lien_sans-deco">
+                                            <div class="artiste_horaire">
+                                                <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
+                                                <div class="artiste_horaire-information">
+                                                    <h4 class="h4 main_artiste-nom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
+                                                    <p class="style_artiste"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
+                                                    <p class="permissionSlip"><?php echo "Requis"; ?></p>
+                                                    <p class="artiste_horaire-time"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    <?php }?>
+                                <?php }?>
                             </div>
-                        </div>
-                        <div class="artiste_horaire">
-                            <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                            <div class="artiste_horaire-information">
-                                <h4 class="h4 main_artiste-nom">Jah & I</h4>
-                                <p class="style_artiste">Rap</p>
-                                <p class="permissionSlip">Laisser Passer Requis</p>
-                                <p class="artiste_horaire-time">18h00</p>
-                            </div>
-                        </div>
-                        <div class="artiste_horaire">
-                            <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                            <div class="artiste_horaire-information">
-                                <h4 class="h4 main_artiste-nom">Jah & I</h4>
-                                <p class="style_artiste">Rap</p>
-                                <p class="permissionSlip">Laisser Passer Requis</p>
-                                <p class="artiste_horaire-time">18h00</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                </section>
+                    </section>
+                <?php }?>     
+
             </div>
         </main>
         <?php include($niveau . "liaisons/fragments/piedDePage.inc.php") ?>

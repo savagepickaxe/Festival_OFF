@@ -2,6 +2,9 @@
 * @author Prenom Nom courriel
 */
 
+/******** Importations *********/
+@import url('https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 /******** Typographie *********/
 
 // Fonction pour convertir une valeur de font-size en pixels à son équivalent rem
@@ -24,7 +27,8 @@
 }
 
 $fontePrimaire : Roboto, sans-serif;
-$fonteSecondaire : Arial, sans-serif;
+$fonteSecondaire : "IBM Plex Mono", monospace;
+$fonteTitre : 'Holtwood One SC', serif;
 
 
 /**** Typographie responsive ****/
@@ -34,7 +38,7 @@ html {
 }
 
 body {
-  font-family: $fonteSecondaire;
+  font-family: $fontePrimaire;
   @include fontSize(16px); /* 16px pour toutes les largeurs d'écran */
   line-height: 1.375; /* facteur multiplicateur de la taille de la police 1.375x16=22 */
   @media (min-width: 601px) {
