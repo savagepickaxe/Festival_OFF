@@ -982,6 +982,7 @@ h3--desktop,
   width: 80%;
   flex-direction: row;
   justify-content: space-between;
+  font-family: "IBM Plex Mono", monospace;
 }
 .dates_section-button {
   width: 50px;
@@ -1037,7 +1038,6 @@ h3--desktop,
 }
 .dates_section-listeJour {
   text-align: center;
-  font-family: "IBM Plex Sans";
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -1045,7 +1045,6 @@ h3--desktop,
 }
 .dates_section-listeDate {
   text-align: center;
-  font-family: "IBM Plex Sans";
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -1053,7 +1052,6 @@ h3--desktop,
 }
 .dates_section-listeMois {
   text-align: center;
-  font-family: "IBM Plex Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -1117,11 +1115,15 @@ h3--desktop,
   border-radius: 25px;
   border: 5px solid #d1ec7a;
   background: #fff;
+  font-family: Roboto, sans-serif;
+}
+.artistes_section-picture {
+  max-width: 260px;
+  border-radius: 15px;
 }
 .artistes_section-image {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  border-radius: 15px;
 }
 .artistes_section-lien {
   text-decoration: none;
@@ -1206,7 +1208,6 @@ h3--desktop,
 .artistes_section-titre {
   color: #000;
   font-feature-settings: "liga" off, "clig" off;
-  font-family: Roboto;
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
@@ -1215,7 +1216,6 @@ h3--desktop,
 .artistes_section-sousTitre {
   color: #000;
   font-feature-settings: "liga" off, "clig" off;
-  font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -1251,7 +1251,6 @@ h3--desktop,
   .artistes_section-titre {
     color: #000;
     font-feature-settings: "liga" off, "clig" off;
-    font-family: Roboto;
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -1260,7 +1259,6 @@ h3--desktop,
   .artistes_section-sousTitre {
     color: #000;
     font-feature-settings: "liga" off, "clig" off;
-    font-family: Roboto;
     font-size: 25px;
     font-style: normal;
     font-weight: 400;
@@ -1282,8 +1280,7 @@ h3--desktop,
     gap: 40px;
   }
   .artistes_section-image {
-    width: 145px;
-    height: 145px;
+    max-width: 145px;
     flex-shrink: 0;
   }
   .artistes_section-horaire {

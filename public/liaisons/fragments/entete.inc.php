@@ -22,7 +22,7 @@
         <li class="menu__listeItem"><a href="<?php echo $niveau ?>index.php" class="menu__lien">Accueil</a></li>
         <li class="menu__listeItem"><a href="<?php echo $niveau ?>artistes/index.php" class="menu__lien">Artistes</a></li>
         <li class="menu__listeItem"><a href="<?php echo $niveau ?>lieux/index.php" class="menu__lien">Tarif</a></li>
-        <li class="menu__listeItem"><a href="<?php echo $niveau ?>programmation/index.php" class="menu__lien">Artistes</a></li>
+        <li class="menu__listeItem"><a href="<?php echo $niveau ?>programmation/index.php" class="menu__lien">Dates</a></li>
         <li class="menu__listeItem"><a href="#" class="menu__lien">FAQ</a></li>
       </ul>
       <button class="bouton_acheter">Acheter</button>
