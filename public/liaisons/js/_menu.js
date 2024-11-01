@@ -1,81 +1,3 @@
-
-
-
-
-/*
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 var menu = {
   lblMenuFerme: '☰',
   lblMenuOuvert: '✖',
@@ -83,118 +5,61 @@ var menu = {
   refLibelle: null,
   refMenu: null,
 
-  configurerNav: function ()
-  {
-    console.log("allo")
-    //********** Création du bouton du menu mobile
+  configurerNav: function () {
+    // Ajout de la classe 'js' au body pour indiquer que JavaScript est activé
     document.body.classList.add('js');
-    // On sélectionne le menu dans le HTML
+
+    // Sélection du menu et de son parent dans le HTML
     this.refMenu = document.querySelector(".menu");
+    const menuParent = this.refMenu.parentElement; // Par exemple, le header
+
+    // Vérifier si le bouton existe déjà pour éviter de le dupliquer
+    if (document.querySelector('.menu__controle')) {
+      return; // Si le bouton existe déjà, arrêter la fonction
+    }
 
     // Création du bouton et du libellé
     this.refBouton = document.createElement("button");
     this.refLibelle = document.createElement("span");
 
-    // On ajoute le libellé dans le bouton
+    // Ajout du libellé dans le bouton
     this.refBouton.appendChild(this.refLibelle);
 
-    // On ajoute les classes au bouton et au libellé
-    this.refBouton.className = 'menu__controle noir';
+    // Ajout des classes au bouton et au libellé
+    this.refBouton.className = 'menu__controle';
     this.refLibelle.className = 'menu__libelle';
 
-    // On associe le texte du libellé à l'élément html
+    // Association du texte du libellé
     this.refLibelle.innerHTML = this.lblMenuFerme;
 
-    // Ajout du bouton dans l'entête de la page html
-    this.refMenu.prepend(this.refBouton);
+    // Ajout du bouton dans le parent du menu (et non dans le menu lui-même)
+    menuParent.prepend(this.refBouton);
 
     // Ajout de l'écouteur d'événement sur le bouton du menu
-    this.refBouton.addEventListener('click', function () {
-      menu.ouvrirFermerNav();
+    this.refBouton.addEventListener('click', () => {
+      this.ouvrirFermerNav();
     });
-    //this.refBouton.addEventListener('click', this.ouvrirFermerNav.bind(this));
   },
 
-  ouvrirFermerNav: function ()
-  {
-    // On bascule la classe de fermeture du menu
-    
+  ouvrirFermerNav: function () {
+    // Bascule de la classe de fermeture du menu
     this.refMenu.classList.toggle("menu--ferme");
- let menuBg = document.querySelector('.menu');
- let boutonMenu = document.querySelector('.menu__controle');
 
-    // On change le libellé du bouton selon l'état du menu
-    if (this.refMenu.classList.contains("menu--ferme"))
-    {
+    // Changement du libellé du bouton selon l'état du menu
+    if (this.refMenu.classList.contains("menu--ferme")) {
       this.refLibelle.innerHTML = this.lblMenuFerme;
-     
-
-      //La timeline pour enlever header
-      const tl = gsap.timeline({})
-      menuBg.classList.remove('background-menu');
-      menuBg.classList.add('background-menuOff');
-
-      boutonMenu.classList.add('noir');
-   
-      gsap.to('  .char', {
-        opacity:0,
-       duration: 0.5,
-        stagger: -0.025,
-        ease: 'power4.out',
-        delay:0.2,
-        y: -50,
-      })
-  
-    }
-    else
-    {
-      
+    } else {
       this.refLibelle.innerHTML = this.lblMenuOuvert;
-
-
-
-      
-      //Faire lever les lettres au click du nav
-      gsap.from(' .char', {
-        opacity:1,
-      
-        y: 50,
-        stagger: 0.025,
-        
-        ease: 'power4.out',
-        duration: 0.5,
-        delay:0.2,
-       
-      })
-      menuBg.classList.add('background-menu');
-      menuBg.classList.remove('background-menuOff');
-      boutonMenu.classList.remove('noir');
-      boutonMenu.classList.add('blanc');
     }
-
- 
-  
   }
 };
 
+// Écouteur d'événement pour initialiser le menu au chargement de la page
+window.addEventListener('load', function () {
+  menu.configurerNav();
+});
 
-//*******************
-// Écouteurs d'événements
-//*******************
-
-window.addEventListener('load', function () { menu.configurerNav(); });
-
-
-
-//GSAP
- document.addEventListener("DOMContentLoaded", (event) => {
-  gsap.registerPlugin(ScrollTrigger)
-
-  
-  
-
-  
- });
- let texteMenu = document.querySelectorAll('.menu__lien');
- const text = new SplitType(texteMenu);
-*/
+// GSAP
+document.addEventListener("DOMContentLoaded", (event) => {
+  gsap.registerPlugin(ScrollTrigger);
+});

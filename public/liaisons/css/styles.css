@@ -495,6 +495,46 @@ h3--desktop,
   background-repeat: no-repeat;
 }
 
+.menu__controle {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .menu--ferme {
+    display: none;
+  }
+  .menu__controle {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1em 2em 1.5em 2em;
+    background-color: rgba(255, 255, 255, 0);
+    outline: none;
+    border: none;
+    width: 38px;
+    height: 30px;
+    transition: all 250ms ease-out;
+    cursor: pointer;
+  }
+  .menu__liste {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    background: #000F1C;
+    flex-direction: column;
+    gap: 2em;
+    align-items: center;
+    padding: 20px;
+  }
+  .menu {
+    margin-bottom: 100px;
+  }
+  .menu--ferme {
+    margin-bottom: 0px;
+  }
+}
 .piedDePage {
   background-color: #000f1c;
   width: 100%;
@@ -1445,6 +1485,4 @@ h3--desktop,
 }
 .infoArtiste img {
   display: block;
-}
-
-/*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */
