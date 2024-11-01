@@ -1326,6 +1326,12 @@ h3--desktop,
     padding: 20px;
   }
 }
+@media (max-width: 768px) {
+  .contenu__article__artiste {
+    display: flex;
+    padding: 20px;
+  }
+}
 .contenu__article__artiste__preview {
   display: flex;
   flex-direction: column;

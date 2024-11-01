@@ -169,6 +169,7 @@
 						<li>
 							<a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id']; ?>">
 								<?php echo $artiste['nom']; ?>
+								
 								<!-- Sources des images pas encore définies par l'équipe. Vérification sur le alt -->
 								<img src="#" alt="<?php echo "ID artiste : " . $artiste['id'] ?>">
 							</a>
