@@ -200,6 +200,12 @@
         &-button {
             pointer-events: none;
         }
+        &-button--inactive {
+        width: 50px;
+        height: 50px;
+        background-image: url("../images/programmation/icones/Arrow.png");
+        pointer-events: none;
+        }
         &-liste {
             display: flex;
             gap: 5px;

@@ -1069,6 +1069,12 @@ h3--desktop,
   .dates_section-button {
     pointer-events: none;
   }
+  .dates_section-button--inactive {
+    width: 50px;
+    height: 50px;
+    background-image: url("../images/programmation/icones/Arrow.png");
+    pointer-events: none;
+  }
   .dates_section-liste {
     display: flex;
     gap: 5px;
