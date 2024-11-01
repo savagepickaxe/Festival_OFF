@@ -17,25 +17,24 @@
 
 
 
-
-	//----------------------------------------------------------------------------------------------------//
-	//Requête pour obtenir les trois à 5 derniers articles
 	$intNbArticlesAffichage = rand(3, 5);
-	$strRequeteActualites="SELECT id, titre, auteurs, date_actualite AS date_complete,
-						YEAR(date_actualite) AS annee, 
-						MONTH(date_actualite) AS mois, 
-						DAYOFMONTH(date_actualite) AS jour, 
-						HOUR(date_actualite) AS heure, 
-						MINUTE(date_actualite) AS minute, 
-						article FROM actualites ORDER BY date_actualite DESC LIMIT 0, " . $intNbArticlesAffichage;
-
+	$strRequeteActualites="SELECT actualites.id, actualites.titre, actualites.auteurs, actualites.date_actualite AS date_complete,
+							YEAR(actualites.date_actualite) AS annee, 
+							MONTH(actualites.date_actualite) AS mois, 
+							DAYOFMONTH(actualites.date_actualite) AS jour, 
+							HOUR(actualites.date_actualite) AS heure, 
+							MINUTE(actualites.date_actualite) AS minute, 
+							actualites.article, evenements.artiste_id, artistes.id AS artiste_id
+						FROM actualites
+						INNER JOIN evenements ON actualites.id = evenements.id 
+						INNER JOIN artistes ON evenements.artiste_id = artistes.id
+						ORDER BY actualites.date_actualite DESC 
+						LIMIT 0, " . $intNbArticlesAffichage;
 	
-
-
 	$objResultatArticles = $pdoConnexion -> query($strRequeteActualites);
-
+	
 	$arrArticles = array();
-
+	
 	for($i=0; $ligne = $objResultatArticles->fetch(); $i++){
 		$arrArticles[$i]['id'] = $ligne['id'];
 		$arrArticles[$i]['titre'] = $ligne['titre'];
@@ -46,16 +45,17 @@
 		$arrArticles[$i]['jour'] = $ligne['jour'];
 		$arrArticles[$i]['heure'] = $ligne['heure'];
 		$arrArticles[$i]['minute'] = $ligne['minute'];
-
+		$arrArticles[$i]['artiste_id'] = $ligne['artiste_id']; // Ajout de l'artiste_id
+	
 		$arrContenuArticle = explode(' ', $ligne['article']);
 		if(count($arrContenuArticle) > 45){
 			array_splice($arrContenuArticle, 45, count($arrContenuArticle));
 		}
 		$arrArticles[$i]['article_preview'] = implode(' ', $arrContenuArticle);
 	}
-
+	
 	$objResultatArticles->closeCursor();
-
+	
 	//---------------------------------- Suggestions d'artistes ----------------------------------//
 
     //Sélection aléatoire de 3 à 5 artistes
@@ -138,59 +138,53 @@
 			<div id="contenu" class="contenu__article">
 				
 			<section class="article">
-				
-				<?php foreach($arrArticles as $article){ ?>
-					
-					<article class="contenu__article__artiste">
-					<header class="contenu__article__artiste__titreCont">
-							<h3 class="contenu__article__artiste__titre"><?php echo $article['titre'];?></h3>
-						</header>
-					<img class="contenu__article__artiste__image" src="liaisons/images/Image.png" alt="">
+    <?php foreach($arrArticles as $article){ ?>
+        <article class="contenu__article__artiste">
+            <header class="contenu__article__artiste__titreCont">
+                <h3 class="contenu__article__artiste__titre"><?php echo $article['titre']; ?></h3>
+            </header>
+            <picture class="contenu__article__artiste__picture">
+                <source media="(min-width:920px)" srcset="<?php echo $niveau; ?>liaisons/images/artistes/carre/<?php echo $article['artiste_id']; ?>_0__w290_carre.jpg">
+                <img class="contenu__article__artiste__image" src="<?php echo $niveau; ?>liaisons/images/artistes/rect/<?php echo $article['artiste_id']; ?>_0__w260_rect.jpg" alt="Image de l'article <?php echo $article['titre']; ?>">
+            </picture>
 
-						<p class="contenu__article__artiste__preview">
-							<?php echo $article['article_preview'];?>
-							<a href="#">...</a>
-						</p>
+            <p class="contenu__article__artiste__preview">
+                <?php echo $article['article_preview']; ?>
+                <a href="#">...</a>
+            </p>
 
-						<footer class="contenu__article__artiste__footer">
-							<p> <?php echo $article['auteurs']; ?></p>
-							<time datetime="<?php echo $article['date_complete'];?>">
-								<?php echo "Le " . $article['jour'] . " " . $arrMois[$article['mois'] - 1] . " " . $article['annee'] . " à " . $article['heure'] . "h" . $article['minute'];?>
-							</time>
-						</footer>
-					</article>
-				<?php } ?>
-			</section>
+            <footer class="contenu__article__artiste__footer">
+                <p><?php echo $article['auteurs']; ?></p>
+                <time datetime="<?php echo $article['date_complete']; ?>">
+                    <?php echo "Le " . $article['jour'] . " " . $arrMois[$article['mois'] - 1] . " " . $article['annee'] . " à " . $article['heure'] . "h" . $article['minute']; ?>
+                </time>
+            </footer>
+        </article>
+    <?php } ?>
+</section>
 
 
 			<section class="suggestions">
-				<h2 class="suggestions__titre">Artistes</h2>
-			
-			
-					<?php foreach($arrArtistesSuggestion as $artiste){ ?>
-						<article class="suggestions__article">
-						<ul class="suggestions__article__contenu">
-						<li>
-							<a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id'];  ?>" class="suggestions__article__titre">
-								<?php echo $artiste['nom']; ?>
-								</a>
-								<p class="suggestions__article__description">
-									<?php echo $artiste['description']; ?>
-								</p>
-								
-								
-						
-						</li>
-						</ul>
-						<img class="suggestions__article__image" src="liaisons/images/Image.png" alt="">
-						</article>
-					<?php } ?>
-				
-		</div>
-	
-			
-			</section>
-		
+    <h2 class="suggestions__titre">Artistes</h2>
+    <?php foreach($arrArtistesSuggestion as $artiste){ ?>
+        <article class="suggestions__article">
+            <ul class="suggestions__article__contenu">
+                <li>
+                    <a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id']; ?>" class="suggestions__article__titre">
+                        <?php echo $artiste['nom']; ?>
+                    </a>
+                    <p class="suggestions__article__description">
+                        <?php echo $artiste['description']; ?>
+                    </p>
+                </li>
+            </ul>
+            <picture class="suggestions__article__picture">
+                <source media="(min-width:920px)" srcset="<?php echo $niveau; ?>liaisons/images/artistes/carre/<?php echo $artiste['id']; ?>_0__w290_carre.jpg">
+                <img class="suggestions__article__image" src="<?php echo $niveau; ?>liaisons/images/artistes/rect/<?php echo $artiste['id']; ?>_0__w260_rect.jpg" alt="Image de l'artiste <?php echo $artiste['nom']; ?>">
+            </picture>
+        </article>
+    <?php } ?>
+</section>
 	
    
       
