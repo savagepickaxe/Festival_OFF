@@ -829,41 +829,34 @@ h3--desktop,
     color: black;
   }
 }
-.body {
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   background-color: #e7fce0;
+  padding-bottom: 20px;
 }
-
-.main_title {
+.main_head {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}
+.main_head-title {
   color: #000;
-  text-align: center;
+  text-align: left;
   font-family: "Holtwood One SC";
-  font-size: 50px;
+  font-size: 30px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  margin-left: 20px;
 }
-
-.main_head {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  max-width: 960px;
-  margin: 50px auto;
+.main_head-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 20px;
 }
-
-.main_main {
-  border-radius: 100px;
-  background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 100px;
-  margin: 100px 0;
-  padding: 100px;
-}
-
-/* Dropdown Button */
-.dropbtn {
+.main_head-dropBtn {
   border-radius: 4px;
   background: #6851ff;
   color: white;
@@ -871,15 +864,7 @@ h3--desktop,
   font-size: 16px;
   border: none;
 }
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
+.main_head-dropContent {
   display: none;
   position: absolute;
   background-color: #f1f1f1;
@@ -887,66 +872,82 @@ h3--desktop,
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+@media (min-width: 750px) {
+  .main_head {
+    display: flex;
+    flex-direction: row;
+    max-width: 720px;
+    padding-top: 50px;
+  }
+  .main_head-title {
+    color: #000;
+    text-align: center;
+    font-family: "Holtwood One SC";
+    font-size: 50px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 20px;
+  }
 }
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: #ddd;
+@media (min-width: 920px) {
+  .main_head {
+    min-width: 920px;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .main_head-title {
+    margin: 0;
+  }
 }
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
+.main_main {
+  border-radius: 50px;
+  background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  margin: 25px 0;
+  padding: 50px 10px;
 }
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+@media (min-width: 920px) {
+  .main_main {
+    gap: 100px;
+  }
 }
 
 .dates_section {
+  display: inline-flex;
+  padding: 30px 20px;
+  align-items: center;
   border-radius: 25px;
-  border: 20px solid #d1ec7a;
+  border: 5px solid #d1ec7a;
   background: #fff;
-  display: inline-flex;
-  height: 220px;
-  padding: 50px;
-  justify-content: center;
-  align-items: center;
+  max-width: 100%;
+  flex-direction: row;
+  justify-content: space-around;
 }
-
-.main_dates-liste {
-  display: inline-flex;
-  height: 228.909px;
-  padding: 50px;
-  justify-content: center;
-  align-items: center;
-  gap: 24px;
-  flex-shrink: 0;
-  list-style: none;
+.dates_section-button {
+  width: 50px;
+  height: 50px;
+  background-image: url("../images/Arrow.png");
 }
-
-.dates_liste-item-active {
-  border-radius: 25px;
-  background: #d1ec7a;
-  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
-  color: #3a6a45;
-  width: 120px;
-  height: 120px;
-  padding: 20px;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.dates_section-next {
+  transform: rotate(180deg);
 }
-
-.dates_liste-item {
+.dates_section-previous {
+  transform: rotate(0deg);
+}
+.dates_section-liste {
+  display: flex;
+  flex-direction: row;
+}
+.dates_section-listeLien {
+  text-decoration: none;
+  pointer-events: none;
+}
+.dates_section-listeItem {
   border-radius: 25px;
   background: #3a6a45;
   color: #d1ec7a;
@@ -958,16 +959,22 @@ h3--desktop,
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  display: none;
 }
-
-.date_lien:hover .dates_liste-item {
+.dates_section-listeItem-active {
   border-radius: 25px;
   background: #d1ec7a;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
   color: #3a6a45;
+  display: flex;
+  width: 120px;
+  height: 120px;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
-.dates_list-jour {
+.dates_section-listeJour {
   text-align: center;
   font-family: "IBM Plex Sans";
   font-size: 20px;
@@ -975,8 +982,7 @@ h3--desktop,
   font-weight: 600;
   line-height: normal;
 }
-
-.dates_list-date {
+.dates_section-listeDate {
   text-align: center;
   font-family: "IBM Plex Sans";
   font-size: 40px;
@@ -984,8 +990,7 @@ h3--desktop,
   font-weight: 700;
   line-height: normal;
 }
-
-.dates_list-mois {
+.dates_section-listeMois {
   text-align: center;
   font-family: "IBM Plex Sans";
   font-size: 16px;
@@ -993,132 +998,295 @@ h3--desktop,
   font-weight: 600;
   line-height: normal;
 }
-
-.dates_button {
-  color: #3a6a45;
-  display: block;
-  width: 50px;
-  height: 50px;
-  background-image: url("../images/Arrow.png");
-  background-position: right;
-  background-repeat: no-repeat;
+@media (min-width: 750px) {
+  .dates_section {
+    border-radius: 25px;
+    border: 20px solid #d1ec7a;
+    background: #fff;
+  }
+  .dates_section-liste {
+    display: flex;
+    gap: 24px;
+  }
+  .dates_section-listeItem {
+    border-radius: 25px;
+    background: #3a6a45;
+    color: #d1ec7a;
+    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    display: flex;
+    width: 120px;
+    height: 120px;
+    padding: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .dates_section-listeLien {
+    pointer-events: auto;
+  }
 }
-
-.lien_sans-deco {
-  text-decoration: none;
-}
-
-.date_lien {
-  text-decoration: none;
-}
-
-.next {
-  transform: rotate(180deg);
+@media (min-width: 920px) {
+  .dates_section {
+    min-width: 800px;
+  }
 }
 
 .artistes_section {
-  border-radius: 25px;
-  border: 20px solid #d1ec7a;
-  background: #fff;
   display: flex;
-  width: 960px;
-  padding: 40px 50px;
-  flex-direction: row;
-  justify-content: left;
+  padding: 20px 20px;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
   gap: 40px;
+  align-self: stretch;
+  border-radius: 25px;
+  border: 5px solid #d1ec7a;
+  background: #fff;
 }
-
-.main_artiste-nom {
-  color: black;
+.artistes_section-image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
 }
-
-.artistes_section-titre {
-  padding-left: 115px;
+.artistes_section-lien {
+  text-decoration: none;
+  margin: 20px;
+}
+.artistes_section-horaire {
+  width: 100%;
+}
+.artistes_section-info {
+  display: flex;
+  width: 300px;
+  max-width: 300px;
+  padding: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  border-radius: 20px;
+  background: #f3f3f3;
+  margin: 0 auto;
+}
+.artistes_section-infoGroup {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: url("../images/Ellipse 1.png");
-  background-position: left;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100px;
-}
-
-.main_artiste-titre {
-  color: #000;
-  font-family: Roboto;
-  font-size: 40px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 35px; /* 60% */
-  margin-bottom: 15px;
-}
-
-.main_artiste-soustitre {
-  color: #000;
-  font-family: Roboto;
-  font-size: 25px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 24px; /* 96% */
-}
-
-.artiste_horaire {
-  display: flex;
-  flex-direction: row;
-  width: 387px;
-  padding: 20px;
-  justify-content: space-between;
   align-items: center;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background: #F3F3F3;
+  gap: 10px;
+  align-self: stretch;
+  padding: 0 20px;
 }
-
-.artiste_horaire-information {
-  display: flex;
-  width: 181px;
-  height: 139px;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-shrink: 0;
+.artistes_section-infoNom {
+  align-self: stretch;
+  color: #3a6a45;
+  text-align: center;
+  font-feature-settings: "liga" off, "clig" off;
+  font-size: 20px;
+  line-height: 24px;
 }
-
-.style_artiste {
-  color: #3A6A45;
+.artistes_section-infoStyles {
+  color: #3a6a45;
   padding-left: 30px;
   background-image: url("../images/Style.png");
   background-position: left;
   background-repeat: no-repeat;
 }
-
-.permissionSlip {
-  color: #354E98;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 400;
+.artistes_section-infoPermission {
+  color: #3a6a45;
   padding-left: 30px;
   background-image: url("../images/Permission.png");
   background-position: left;
   background-repeat: no-repeat;
 }
-
-.artiste_horaire-time {
+.artistes_section-infoTemp {
   display: flex;
   padding: 5px 20px;
   justify-content: center;
   align-items: center;
+  gap: 10px;
   border-radius: 10px;
-  background: #3A6A45;
-  color: #D1EC7A;
+  background: #3a6a45;
+  color: #d1ec7a;
+}
+.artistes_section-head {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 20px 0;
+  width: 100%;
+}
+.artistes_section-headImage {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+}
+.artistes_section-headText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 15px;
+}
+.artistes_section-titre {
+  color: #000;
+  font-feature-settings: "liga" off, "clig" off;
   font-family: Roboto;
-  font-size: 16px;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+}
+.artistes_section-sousTitre {
+  color: #000;
+  font-feature-settings: "liga" off, "clig" off;
+  font-family: Roboto;
+  font-size: 20px;
   font-style: normal;
   font-weight: 400;
-  max-width: 100px;
+  line-height: 24px;
+}
+@media (min-width: 750px) {
+  .artistes_section {
+    width: 100%;
+    margin: auto;
+    border-radius: 25px;
+    border: 20px solid #d1ec7a;
+    background: #fff;
+  }
+  .artistes_section-head {
+    display: flex;
+    padding: 0px 30px;
+    align-items: center;
+    gap: 15px;
+    align-self: stretch;
+  }
+  .artistes_section-headImage {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+  .artistes_section-headText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .artistes_section-titre {
+    color: #000;
+    font-feature-settings: "liga" off, "clig" off;
+    font-family: Roboto;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 35px;
+  }
+  .artistes_section-sousTitre {
+    color: #000;
+    font-feature-settings: "liga" off, "clig" off;
+    font-family: Roboto;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+  }
+}
+@media (min-width: 920px) {
+  .artistes_section {
+    max-width: 920px;
+    border-radius: 25px;
+    border: 20px solid #d1ec7a;
+    background: #fff;
+    display: flex;
+    width: 960px;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .artistes_section-image {
+    width: 145px;
+    height: 145px;
+    flex-shrink: 0;
+  }
+  .artistes_section-horaire {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .artistes_section-lien {
+    display: flex;
+    flex-direction: row;
+    width: 387px;
+    padding: 20px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #f3f3f3;
+    margin: 20px 0;
+  }
+  .artistes_section-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #f3f3f3;
+    padding: 0;
+    margin: 0;
+  }
+  .artistes_section-infoGroup {
+    display: flex;
+    width: 181px;
+    height: 139px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-shrink: 0;
+    padding: 0;
+  }
+  .artistes_section-infoNom {
+    align-self: stretch;
+    color: #3a6a45;
+    text-align: left;
+    font-feature-settings: "liga" off, "clig" off;
+    font-size: 20px;
+    line-height: 24px;
+  }
+  .artistes_section-infoStyles {
+    color: #3a6a45;
+    padding-left: 30px;
+    background-image: url("../images/Style.png");
+    background-position: left;
+    background-repeat: no-repeat;
+  }
+  .artistes_section-infoPermission {
+    color: #354e98;
+    font-style: normal;
+    font-weight: 400;
+    padding-left: 30px;
+    background-image: url("../images/Permission.png");
+    background-position: left;
+    background-repeat: no-repeat;
+  }
+  .artistes_section-infoTemp {
+    display: flex;
+    padding: 5px 20px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background: #3a6a45;
+    color: #d1ec7a;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    max-width: 100px;
+  }
 }
 
 .contenu__article {

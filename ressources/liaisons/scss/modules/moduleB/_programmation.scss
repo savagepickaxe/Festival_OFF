@@ -1,289 +1,464 @@
-.body {
+// Main
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
     background-color: #e7fce0;
+    padding-bottom: 20px;
+    // Main Head
+    &_head {
+        display: flex;
+        flex-direction: column;
+        margin-top: 40px;
+        // Main Title
+        &-title {
+            color: #000;
+            text-align: left;
+            font-family: "Holtwood One SC";
+            font-size: 30px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            margin-left: 20px;
+        }
+        // Main Dropdown
+        &-dropdown {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+        }
+        // Main Dropdown Button
+        &-dropBtn {
+            border-radius: 4px;
+            background: #6851ff;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+        }
+        // Main Dropdown Content
+        &-dropContent {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+        @media (min-width: 750px) {
+            display: flex;
+            flex-direction: row;
+            max-width: 720px;
+            padding-top: 50px;
+            &-title {
+                color: #000;
+                text-align: center;
+                font-family: "Holtwood One SC";
+                font-size: 50px;
+                font-style: normal;
+                font-weight: 400;
+                line-height: normal;
+                margin-left: 20px;
+            }
+        }
+        @media (min-width: 920px) {
+            min-width: 920px;
+            margin: auto;
+            justify-content: space-between;
+            align-items: center;
+            &-title {
+                margin: 0;
+            }
+        }
+    }
+
+    // Main main
+    &_main {
+        border-radius: 50px;
+        background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+        margin: 25px 0;
+        padding: 50px 10px;
+        @media (min-width: 920px) {
+            gap: 100px;
+        }
+    }
 }
 
-.main_title {
-    color: #000;
-    text-align: center;
-    font-family: "Holtwood One SC";
-    font-size: 50px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.main_head {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-width: 960px;
-    margin: 50px auto;
-}
-
-.main_main {
-    border-radius: 100px;
-    background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 100px;
-    margin: 100px 0;
-    padding: 100px;
-}
-
-/* Dropdown Button */
-.dropbtn {
-    border-radius: 4px;
-    background: #6851ff;
-    color: white;
-    padding: 16px;
-    font-size: 16px;
-    border: none;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-    background-color: #ddd;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #3e8e41;
-}
-
+// Dates Section
 .dates_section {
+    display: inline-flex;
+    padding: 30px 20px;
+    align-items: center;
     border-radius: 25px;
-    border: 20px solid #d1ec7a;
+    border: 5px solid #d1ec7a;
     background: #fff;
-    display: inline-flex;
-    height: 220px;
-    padding: 50px;
-    justify-content: center;
-    align-items: center;
-}
-
-.main_dates-liste {
-    display: inline-flex;
-    height: 228.909px;
-    padding: 50px;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    flex-shrink: 0;
-    list-style: none;
-}
-
-.dates_liste-item-active {
-    border-radius: 25px;
-    background: #d1ec7a;
-    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
-    color: #3a6a45;
-    width: 120px;
-    height: 120px;
-    padding: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.dates_liste-item {
-    border-radius: 25px;
-    background: #3a6a45;
-    color: #d1ec7a;
-    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
-    display: flex;
-    width: 120px;
-    height: 120px;
-    padding: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.date_lien:hover .dates_liste-item {
-    border-radius: 25px;
-    background: #d1ec7a;
-    box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
-    color: #3a6a45;
-}
-
-.dates_list-jour {
-    text-align: center;
-    font-family: "IBM Plex Sans";
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-.dates_list-date {
-    text-align: center;
-    font-family: "IBM Plex Sans";
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-}
-.dates_list-mois {
-    text-align: center;
-    font-family: "IBM Plex Sans";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-}
-
-.dates_button {
-    color: #3a6a45;
-    display: block;
-    width: 50px;
-    height: 50px;
-    background-image: url("../images/Arrow.png");
-    background-position: right;
-    background-repeat: no-repeat;
-}
-
-.lien_sans-deco {
-    text-decoration: none;
-}
-
-.date_lien {
-    text-decoration: none;
-}
-
-.next {
-    transform: rotate(180deg);
+    max-width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    // Dates Button
+    &-button {
+        width: 50px;
+        height: 50px;
+        background-image: url("../images/Arrow.png");
+    }
+    &-next {
+        transform: rotate(180deg);
+    }
+    &-previous {
+        transform: rotate(0deg);
+    }
+    &-liste {
+        display: flex;
+        flex-direction: row;
+    }
+    &-listeLien {
+        text-decoration: none;
+        pointer-events: none;
+    }
+    &-listeItem {
+        border-radius: 25px;
+        background: #3a6a45;
+        color: #d1ec7a;
+        box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+        display: flex;
+        width: 120px;
+        height: 120px;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        display: none;
+    }
+    &-listeItem-active {
+        border-radius: 25px;
+        background: #d1ec7a;
+        box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+        color: #3a6a45;
+        display: flex;
+        width: 120px;
+        height: 120px;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    &-listeJour {
+        text-align: center;
+        font-family: "IBM Plex Sans";
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    &-listeDate {
+        text-align: center;
+        font-family: "IBM Plex Sans";
+        font-size: 40px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    &-listeMois {
+        text-align: center;
+        font-family: "IBM Plex Sans";
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+    @media (min-width: 750px) {
+        border-radius: 25px;
+        border: 20px solid #d1ec7a;
+        background: #fff;
+        &-liste {
+            display: flex;
+            gap: 24px;
+        }
+        &-listeItem {
+            border-radius: 25px;
+            background: #3a6a45;
+            color: #d1ec7a;
+            box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.25);
+            display: flex;
+            width: 120px;
+            height: 120px;
+            padding: 20px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        &-listeLien {
+            pointer-events: auto;
+        }
+    }
+    @media (min-width: 920px) {
+        min-width: 800px;
+    }
 }
 
 .artistes_section {
-    border-radius: 25px;
-    border: 20px solid #d1ec7a;
-    background: #fff;
     display: flex;
-    width: 960px;
-    padding: 40px 50px;
-    flex-direction: row;
-    justify-content: left;
+    padding: 20px 20px;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     gap: 40px;
-}
+    align-self: stretch;
+    border-radius: 25px;
+    border: 5px solid #d1ec7a;
+    background: #fff;
+    // Artiste Image
+    &-image {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
+    }
+    &-lien {
+        text-decoration: none;
+        margin: 20px;
+    }
+    // Horaire
+    &-horaire {
+        width: 100%;
+    }
+    //
+    &-info {
+        display: flex;
+        width: 300px;
+        max-width: 300px;
+        padding: 20px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        border-radius: 20px;
+        background: #f3f3f3;
+        margin: 0 auto;
+        // Info Group
+        &Group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            align-self: stretch;
+            padding: 0 20px;
+        }
+        &Nom {
+            align-self: stretch;
+            color: #3a6a45;
+            text-align: center;
+            font-feature-settings: "liga" off, "clig" off;
+            font-size: 20px;
+            line-height: 24px;
+        }
+        &Styles {
+            color: #3a6a45;
+            padding-left: 30px;
+            background-image: url("../images/Style.png");
+            background-position: left;
+            background-repeat: no-repeat;
+        }
+        &Permission {
+            color: #3a6a45;
+            padding-left: 30px;
+            background-image: url("../images/Permission.png");
+            background-position: left;
+            background-repeat: no-repeat;
+        }
+        &Temp {
+            display: flex;
+            padding: 5px 20px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border-radius: 10px;
+            background: #3a6a45;
+            color: #d1ec7a;
+        }
+    }
+    &-head {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 20px 0;
+        width: 100%;
+        &Image {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+        }
+    }
+    &-headText {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    &-titre {
+        color: #000;
+        font-feature-settings: "liga" off, "clig" off;
+        font-family: Roboto;
+        font-size: 22px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+    }
+    &-sousTitre {
+        color: #000;
+        font-feature-settings: "liga" off, "clig" off;
+        font-family: Roboto;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+    }
 
-.main_artiste-nom {
-    color: black;
-}
-
-.artistes_section-titre {
-    padding-left: 115px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image: url("../images/Ellipse 1.png");
-    background-position: left;
-    background-repeat: no-repeat;
-    width: 100%;
-    height: 100px;
-}
-
-.main_artiste-titre {
-    color: #000;
-    font-family: Roboto;
-    font-size: 40px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 35px; /* 60% */
-    margin-bottom: 15px;
-}
-
-.main_artiste-soustitre {
-    color: #000;
-    font-family: Roboto;
-    font-size: 25px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px; /* 96% */
-}
-
-.artiste_horaire {
-    display: flex;
-    flex-direction: row;
-    width: 387px;
-    padding: 20px;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 20px;
-    background: #F3F3F3;
-}
-
-.artiste_horaire-information {
-    display: flex;
-    width: 181px;
-    height: 139px;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-shrink: 0;
-}
-
-.style_artiste {
-    color: #3A6A45;
-    padding-left: 30px;
-    background-image: url("../images/Style.png");
-    background-position: left;
-    background-repeat: no-repeat;
-}
-
-.permissionSlip {
-    color: #354E98;
-    font-family: Roboto;
-    font-style: normal;
-    font-weight: 400;
-    padding-left: 30px;
-    background-image: url("../images/Permission.png");
-    background-position: left;
-    background-repeat: no-repeat;
-}
-
-.artiste_horaire-time {
-    display: flex;
-    padding: 5px 20px;
-    justify-content: center;
-    align-items: center;
-    border-radius: 10px;
-    background: #3A6A45;
-    color: #D1EC7A;
-    font-family: Roboto;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    max-width: 100px;
+    @media (min-width: 750px) {
+        width: 100%;
+        margin: auto;
+        border-radius: 25px;
+        border: 20px solid #d1ec7a;
+        background: #fff;
+        &-head {
+            display: flex;
+            padding: 0px 30px;
+            align-items: center;
+            gap: 15px;
+            align-self: stretch;
+            &Image {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+            }
+        }
+        &-headText {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 15px;
+        }
+        &-titre {
+            color: #000;
+            font-feature-settings: "liga" off, "clig" off;
+            font-family: Roboto;
+            font-size: 40px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 35px;
+        }
+        &-sousTitre {
+            color: #000;
+            font-feature-settings: "liga" off, "clig" off;
+            font-family: Roboto;
+            font-size: 25px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 24px;
+        }
+    }
+    @media (min-width: 920px) {
+        max-width: 920px;
+        border-radius: 25px;
+        border: 20px solid #d1ec7a;
+        background: #fff;
+        display: flex;
+        width: 960px;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        // Artiste Image
+        &-image {
+            width: 145px;
+            height: 145px;
+            flex-shrink: 0;
+        }
+        // Horaire
+        &-horaire {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        &-lien {
+            display: flex;
+            flex-direction: row;
+            width: 387px;
+            padding: 20px;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 20px;
+            background: #f3f3f3;
+            margin: 20px 0;
+        }
+        //
+        &-info {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-shrink: 0;
+            border-radius: 20px;
+            background: #f3f3f3;
+            padding: 0;
+            margin: 0;
+            // Info Group
+            &Group {
+                display: flex;
+                width: 181px;
+                height: 139px;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: flex-start;
+                flex-shrink: 0;
+                padding: 0;
+            }
+            &Nom {
+                align-self: stretch;
+                color: #3a6a45;
+                text-align: left;
+                font-feature-settings: "liga" off, "clig" off;
+                font-size: 20px;
+                line-height: 24px;
+            }
+            &Styles {
+                color: #3a6a45;
+                padding-left: 30px;
+                background-image: url("../images/Style.png");
+                background-position: left;
+                background-repeat: no-repeat;
+            }
+            &Permission {
+                color: #354e98;
+                font-style: normal;
+                font-weight: 400;
+                padding-left: 30px;
+                background-image: url("../images/Permission.png");
+                background-position: left;
+                background-repeat: no-repeat;
+            }
+            &Temp {
+                display: flex;
+                padding: 5px 20px;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                background: #3a6a45;
+                color: #d1ec7a;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 400;
+                max-width: 100px;
+            }
+        }
+    }
 }
