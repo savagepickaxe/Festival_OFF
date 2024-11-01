@@ -62,7 +62,7 @@
     $nbSuggestions = rand(3, 5);
 
     //Sélection de tous les artistes
-    $strRequeteSuggestion = "SELECT artistes.nom, artistes.id FROM artistes ORDER BY nom";
+    $strRequeteSuggestion = "SELECT artistes.nom, artistes.id, artistes.description FROM artistes ORDER BY nom";
 
     //Récupération des artistes 
     $pdoResultatSuggestion = $pdoConnexion->query($strRequeteSuggestion);
@@ -70,6 +70,7 @@
     for($i = 0; $ligne = $pdoResultatSuggestion->fetch(); $i++){
         $arrArtistesSuggestionPotentiel[$i]['nom'] = $ligne['nom'];
         $arrArtistesSuggestionPotentiel[$i]['id'] = $ligne['id'];
+		$arrArtistesSuggestionPotentiel[$i]['description'] = $ligne['description'];
     }
 
     //Fermeture de la requête
@@ -163,21 +164,30 @@
 
 
 			<section class="suggestions">
-				<h2>Artistes suggérés</h2>
-				<ul>
+				<h2 class="suggestions__titre">Artistes</h2>
+			
+			
 					<?php foreach($arrArtistesSuggestion as $artiste){ ?>
+						<article class="suggestions__article">
+						<ul class="suggestions__article__contenu">
 						<li>
-							<a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id']; ?>">
+							<a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id'];  ?>" class="suggestions__article__titre">
 								<?php echo $artiste['nom']; ?>
+								</a>
+								<p class="suggestions__article__description">
+									<?php echo $artiste['description']; ?>
+								</p>
 								
-								<!-- Sources des images pas encore définies par l'équipe. Vérification sur le alt -->
-								<img src="#" alt="<?php echo "ID artiste : " . $artiste['id'] ?>">
-							</a>
+								
+						
 						</li>
+						</ul>
+						<img class="suggestions__article__image" src="liaisons/images/Image.png" alt="">
+						</article>
 					<?php } ?>
-				</ul>
+				
 		</div>
-
+	
 			
 			</section>
 		
