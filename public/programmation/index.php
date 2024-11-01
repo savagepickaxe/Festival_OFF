@@ -198,7 +198,7 @@
                             <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
                                     <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>" class="artistes_section-lien">
                                         <div class="artistes_section-info">
-                                            <img class="artistes_section-image" src="../liaisons/images/Image.png" alt="">
+                                            <img class="artistes_section-image" src="<?php echo $niveau; ?>liaisons/images/carre/<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>_0__w145_carre.jpg" alt="">
                                             <div class="artistes_section-infoGroup">
                                                 <h4 class="h4 artistes_section-infoNom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
                                                 <p class="artistes_section-infoStyles"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
