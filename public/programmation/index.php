@@ -8,7 +8,6 @@
     } else {
         $strId = 0;
     }
-
 	// Requete pour obtenire : Les ID des artistes et les Noms des artistes
 	$strRequeteUn =  'SELECT DISTINCT DAYOFMONTH(date_et_heure) AS date_jour, MONTH(date_et_heure) as date_mois, DAYOFWEEK(evenements.date_et_heure) AS date_jourSemaine FROM evenements ORDER BY date_mois, date_jour';
 
@@ -125,8 +124,7 @@
                             $strStyles .= $ligneStyle['nom_style'] . ", ";
                             $ligneStyle = $pdosResultatStyle->fetch();
                         }
-                        // Enlever la virgule a la fin de la liste des styles de l'artiste
-
+                    // Enlever la virgule a la fin de la liste des styles de l'artiste
                     $arrEvenements[$cpt2]['styles'] = substr_replace($strStyles, "", -2);;
                     $ligneEvenement = $pdosResultatEvenement->fetch();
                 }
@@ -136,7 +134,6 @@
     
         $pdosResultat->closeCursor();
     }
-
    
 ?>
 <!DOCTYPE html>
@@ -153,13 +150,12 @@
 
     <body class="body">
         <?php include($niveau . "liaisons/fragments/entete.inc.php") ?>
-
         <main class="main">
             <div class="main_head">
-                <h1 class="main_title">Programmation</h1>
-                <div class="dropdown">
-                    <button class="dropbtn">Afficher les lieux</button>
-                    <div class="dropdown-content">
+                <h1 class="main_head-title">Programmation</h1>
+                <div class="main_head-dropdown">
+                    <button class="main_head-dropBtn">Afficher les lieux</button>
+                    <div class="main_head-dropContent">
                         <a href="#">Link 1</a>
                         <a href="#">Link 2</a>
                         <a href="#">Link 3</a>
@@ -168,48 +164,51 @@
             </div>
             <div class="main_main">
                 <section class="dates_section">
-                    <a class="dates_button previous" href=""></a>
-                    <ul class="main_dates-liste">
+                    <a class="dates_section-button dates_section-previous" href=""></a>
+                    <ul class="dates_section-liste">
                         <?php for ($cpt = 0; $cpt < count($arrDates); $cpt++) { ; ?>
-                            <a href="index.php?id=<?php echo $arrDates[$cpt]['date_jour']; ?>" class="date_lien lien_sans-deco">
-                                <li class="dates_liste-item">
-                                    <?php echo "<p class='dates_list-jour'>" . $arrDaysofWeek[$arrDates[$cpt]['date_jourSemaine']-1]. "<p>"; ?>
-                                    <?php echo "<p class='dates_list-date'>" . $arrDates[$cpt]['date_jour'] . "<p>"; ?>
-                                    <?php echo "<p class='dates_list-mois'>" . $arrMonths[$arrDates[$cpt]['date_mois']-1] . "<p>"; ?>
-                                </li>
+                            <?php if ($arrDates[$cpt]['date_jour'] == $strId) {; ?>
+                                <a href="index.php?" class="dates_section-listeLien lien_sans-deco">
+                                    <li class="dates_section-listeItem-active">
+                            <?php } else {; ?>
+                                <a href="index.php?id=<?php echo $arrDates[$cpt]['date_jour']; ?>" class="dates_section-listeLien lien_sans-deco">
+                                    <li class="dates_section-listeItem">
+                            <?php }; ?>
+                                        <?php echo "<p class='dates_section-listeJour'>" . $arrDaysofWeek[$arrDates[$cpt]['date_jourSemaine']-1]. "</p>"; ?>
+                                        <?php echo "<p class='dates_section-listeDate'>" . $arrDates[$cpt]['date_jour'] . "</p>"; ?>
+                                        <?php echo "<p class='dates_section-listeMois'>" . $arrMonths[$arrDates[$cpt]['date_mois']-1] . "</p>"; ?>
+                                    </li>
                             </a>
                         <?php }?>
                     </ul>
-                    <a class="dates_button next" href=""></a>
+                    <a class="dates_section-button dates_section-next" href=""></a>
                 </section>
                 <?php for ($cpt = 0; $cpt < count($arrLieux); $cpt++) { ; ?>
-                    <section class="horaires_section">
-                            <div class="artistes_section">
-                                <div class="artistes_section-titre">
-                                    <h2 class="h2 main_artiste-titre"><?php echo $arrLieux[$cpt]['nom_lieu']; ?></h2>
-                                    <h3 class="h3 main_artiste-soustitre">801-811 rue Saint-Jean, Québec</h3>
+                    <section class="artistes_section">
+                        <div class="artistes_section-horaire">
+                            <div class="artistes_section-head">
+                                <img class="artistes_section-headImage" src="../liaisons/images/Image.png" alt="">
+                                <div class="artistes_section-headText">
+                                    <h2 class="h2 artistes_section-titre"><?php echo $arrLieux[$cpt]['nom_lieu']; ?></h2>
+                                    <h3 class="h3 artistes_section-sousTitre">801-811 rue Saint-Jean, Québec</h3>
                                 </div>
-                                <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
-                                    <?php if (count($arrLieux[$cpt]['info']) == 0) { ?>
-                                        <p>Rien</p>
-                                    <?php } else { ?>
-                                        <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>" class="lien_artiste lien_sans-deco">
-                                            <div class="artiste_horaire">
-                                                <img class="ariste_horaire-image" src="../liaisons/images/Image.png" alt="">
-                                                <div class="artiste_horaire-information">
-                                                    <h4 class="h4 main_artiste-nom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
-                                                    <p class="style_artiste"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
-                                                    <p class="permissionSlip"><?php echo "Requis"; ?></p>
-                                                    <p class="artiste_horaire-time"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    <?php }?>
-                                <?php }?>
                             </div>
+                            <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
+                                    <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>" class="artistes_section-lien">
+                                        <div class="artistes_section-info">
+                                            <img class="artistes_section-image" src="../liaisons/images/Image.png" alt="">
+                                            <div class="artistes_section-infoGroup">
+                                                <h4 class="h4 artistes_section-infoNom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
+                                                <p class="artistes_section-infoStyles"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>
+                                                <p class="artistes_section-infoPermission"><?php echo "Requis"; ?></p>
+                                                <p class="artistes_section-infoTemp"><?php echo $arrLieux[$cpt]['info'][$cpt2]['heure'] . ":" . $arrLieux[$cpt]['info'][$cpt2]['minute']; ?></p>
+                                            </div>
+                                        </div>
+                                    </a>
+                            <?php }?>
+                        </div>
                     </section>
                 <?php }?>     
-
             </div>
         </main>
         <?php include($niveau . "liaisons/fragments/piedDePage.inc.php") ?>

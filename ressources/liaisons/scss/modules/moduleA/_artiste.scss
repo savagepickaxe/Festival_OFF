@@ -52,6 +52,11 @@ position: relative;
               padding: 20px;
         }
 
+        @media(max-width: 768px){
+            display: flex;
+            padding: 20px;
+        }
+
         &__preview{
             display: flex;
             flex-direction: column;

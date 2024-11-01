@@ -127,7 +127,6 @@
                 } ?>    
             </h1>
             <p class="infoArtiste__styles">
-                style(s): 
                 <?php foreach($arrStyles as $strStyle){
                     echo $strStyle['nom'] . " / ";
                 } ?>
@@ -136,8 +135,8 @@
                 <img class="infoArtiste__image" src="<?php echo $niveau ?>liaisons/images/<?php echo $strImage ?>.jpg" alt="Image de l'artiste">
             <?php } ?>
             <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
-                <p>Provenance : <?php echo $strInfosArtiste[2]?>, <?php echo $strInfosArtiste[3] ?></p>
-                <p>Biographie : <?php echo $strInfosArtiste[1] ?></p>
+                <p class="infoArtiste__provenance">Provenance : <span class="infoArtiste__provenance--smallSize"><?php echo $strInfosArtiste[2]?>, <?php echo $strInfosArtiste[3] ?></span></p>
+                <p class="infoArtiste__biographie"><?php echo $strInfosArtiste[1] ?></p>
             <?php } ?>
             <div class="infoArtiste__medias">
                 <h2 class="infoArtiste__medias__titre">Liens de contact</h2>
