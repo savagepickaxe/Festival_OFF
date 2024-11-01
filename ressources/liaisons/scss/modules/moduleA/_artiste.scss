@@ -1,30 +1,50 @@
+.contenu__article::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 40px; /* Bordure externe arrondie */
+    background: #d1ec7a; /* Couleur de la bordure externe */
+    z-index: -1;
+}
+
+
 .contenu__article {
-    border-radius: 100px;
+    border-radius:30px;
     background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
+position: relative;
+
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 100px;
+    gap: 20px;
     margin: 100px 0;
     padding: 100px;
     margin-bottom: 50px;
+
     @media(max-width:768px){
         margin-top: 20px;
         padding: 30px;
     }
+
     &__artiste{
         border-radius: 25px;
         border: 20px solid #d1ec7a;
         background: #fff;
         display: grid;
-        padding: 50px;
+        max-width: 60%;
+        margin: auto;
         justify-content: center;
+        padding: 25px 50px 50px 50px;
    
         /* Layout en grille avec 2 colonnes : image et texte */
-        grid-template-columns: repeat(2, 1fr); 
+        grid-template-columns: auto 1fr;
       margin-bottom: 50px;
         
-        gap: 50px;
+        gap: 20px;
         @media(max-width:768px){
            display: flex;
            flex-direction: column;
@@ -37,8 +57,8 @@
             flex-direction: column;
             font-size: 2.3rem;
             gap: 20px;
-            max-width: 80%;
-
+            font-family: 'roboto', sans-serif;
+            color: #366A4D;
             @media(max-width:768px){
                 max-width: 100%;
                 line-height: 28px;
@@ -48,8 +68,8 @@
         &__image{
             border-radius: 25px;
             max-width: 100%;
-            height: auto;
             min-width: 100%;
+            height: auto;
             object-fit: cover;
             align-self: baseline;
         
@@ -63,7 +83,8 @@
             font-size: 3rem;
             font-weight: 700;
             justify-content: top;
-           
+            font-family: 'roboto', sans-serif;
+            color: #366A4D;
         }
         &__titreCont{
            display: flex;
@@ -75,8 +96,11 @@
             height: 100%;
             justify-content: space-between;
             gap: 20px;
-           
-         
+            font-family: 'roboto', sans-serif;
+            color: #366A4D;
+            align-self: end;
+            justify-self: end;
+            grid-column: 2;
             
         }
         }
