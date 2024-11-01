@@ -155,21 +155,23 @@
                 <h1 class="main_head-title">Programmation</h1>
                 <div class="main_head-dropdown">
                     <button class="main_head-dropBtn">Afficher les lieux</button>
-                    <div class="main_head-dropContent">
-                        <a href="#">Link 1</a>
-                        <a href="#">Link 2</a>
-                        <a href="#">Link 3</a>
+                    <div class="main_head-dropDiv main_head-dropHidden">
+                        <div class="main_head-dropContent">
+                            <?php for ($cpt = 0; $cpt < count($arrLieux); $cpt++) { ; ?>
+                                <p class="main_head-dropText" href="#"><?php echo $arrLieux[$cpt]['nom_lieu']; ?></p>
+                            <?php }?>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="main_main">
                 <section class="dates_section">
-                    <a class="dates_section-button dates_section-previous" href=""></a>
+                    <a class="<?php if ($strId == 8) { echo "dates_section-button--inactive";} else { echo "dates_section-button";} ?> dates_section-previous" href="index.php?id=<?php echo $strId-"1"; ?>"></a>
                     <ul class="dates_section-liste">
                         <?php for ($cpt = 0; $cpt < count($arrDates); $cpt++) { ; ?>
                             <?php if ($arrDates[$cpt]['date_jour'] == $strId) {; ?>
                                 <a href="index.php?" class="dates_section-listeLien lien_sans-deco">
-                                    <li class="dates_section-listeItem-active">
+                                    <li class="dates_section-listeItem--active">
                             <?php } else {; ?>
                                 <a href="index.php?id=<?php echo $arrDates[$cpt]['date_jour']; ?>" class="dates_section-listeLien lien_sans-deco">
                                     <li class="dates_section-listeItem">
@@ -181,7 +183,7 @@
                             </a>
                         <?php }?>
                     </ul>
-                    <a class="dates_section-button dates_section-next" href=""></a>
+                    <a class="<?php if ($strId == 11) { echo "dates_section-button--inactive";} else { echo "dates_section-button";} ?> dates_section-next" href="index.php?id=<?php echo $strId+"1"; ?>"></a>
                 </section>
                 <?php for ($cpt = 0; $cpt < count($arrLieux); $cpt++) { ; ?>
                     <section class="artistes_section">
