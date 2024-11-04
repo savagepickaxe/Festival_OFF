@@ -681,6 +681,12 @@ h3--desktop,
   width: 100%;
   gap: 0.03em;
 }
+@media (max-width: 768px) {
+  .accueil__gros-titre {
+    flex-direction: row;
+    gap: 0.03em;
+  }
+}
 .accueil__gros-titre__ligne1 {
   display: flex;
   flex-direction: row;
