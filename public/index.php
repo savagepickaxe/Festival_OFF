@@ -107,27 +107,27 @@
 
 	<main id="contenu" class="conteneur">
 			<section class="accueil">
-			<header class="gros-titre">
-				<div class="lignes ligne1">
+			<header class="accueil__gros-titre">
+				<div class="lignes accueil__gros-titre__ligne1">
 					<span>Festival</span>
 				</div>
-				<div class="lignes ligne2">
+				<div class="lignes accueil__gros-titre__ligne2">
 					<span>Off</span>
 			</div>
 			</header>
-			<footer class="image-menu">
-				<article class="video-background">
-					<div class="video-tour">
+			<footer class="accueil__video">
+				<article class="accueil__video__contenu">
+					<div class="accueil__video__contenu__tour">
 						<video src="liaisons/videos/OFF.mp4"  
 						width="640" height="360" autoplay  loop muted  frameborder="0" allow="autoplay; encrypted-media"
 						 allowfullscreen>
 						</video>
 					</div>
 				</article>
-				<article class="h1-boite">
-					<div class="gros-titre ">OFF</div>
-					<div class="coin left-top"></div>
-					<div class="coin right-bottom"></div>
+				<article class="accueil__video__contenu2">
+					<span class="accueil__gros-titre">OFF</span>
+					<span class="accueil__video__contenu2__coin coin1"></span>
+					<span class="accueil__video__contenu2__coin coin2 "></span>
 				</article>
 			</footer>
 			</section>
@@ -135,9 +135,9 @@
 
 			
 		
-			<div id="contenu" class="contenu__article">
+			<div id="contenu" class="contenu">
 				
-			<section class="article">
+			<section class="contenu__article">
     <?php foreach($arrArticles as $article){ ?>
         <article class="contenu__article__artiste">
             <header class="contenu__article__artiste__titreCont">
@@ -187,7 +187,7 @@
 </section>
 	
    
-      
+</div>
 	</main>
 
 	

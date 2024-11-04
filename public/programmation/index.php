@@ -6,7 +6,7 @@
     if (isset($_GET['id']) == true) {
         $strId = $_GET['id'];
     } else {
-        $strId = 0;
+        $strId = 8;
     }
 	// Requete pour obtenire : Les ID des artistes et les Noms des artistes
 	$strRequeteUn =  'SELECT DISTINCT DAYOFMONTH(date_et_heure) AS date_jour, MONTH(date_et_heure) as date_mois, DAYOFWEEK(evenements.date_et_heure) AS date_jourSemaine FROM evenements ORDER BY date_mois, date_jour';
