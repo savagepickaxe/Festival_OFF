@@ -91,13 +91,15 @@
 
     //---------------------------------------------------
     $arrArtistesSuggestion = array();
-    for($i = 0; $i < $nbSuggestions; $i++){
-        //Sélection aléatoire d'un artiste
-        $artisteChoisi = rand(0, count($arrArtistesSuggestionPotentiel) - 1);
-        //Ajout de l'artiste dans le tableau
-        array_push($arrArtistesSuggestion, $arrArtistesSuggestionPotentiel[$artisteChoisi]);
-        //Suppression de l'artiste du tableau potentiel
-        array_splice($arrArtistesSuggestionPotentiel, $artisteChoisi, 1);
+    if(count($arrArtistesSuggestionPotentiel) > 0){
+        for($i = 0; $i < $nbSuggestions; $i++){
+            //Sélection aléatoire d'un artiste
+            $artisteChoisi = rand(0, count($arrArtistesSuggestionPotentiel) - 1);
+            //Ajout de l'artiste dans le tableau
+            array_push($arrArtistesSuggestion, $arrArtistesSuggestionPotentiel[$artisteChoisi]);
+            //Suppression de l'artiste du tableau potentiel
+            array_splice($arrArtistesSuggestionPotentiel, $artisteChoisi, 1);
+        }
     }
 ?>
 
@@ -149,10 +151,18 @@
                     <ul class="infoArtiste__medias__liste">
                         <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
                             <?php if($strInfosArtiste[4] != null){ ?>
-                                <li class="infoArtiste__medias__item"><span class="infoArtiste__medias__iconeInternet"></span><?php echo $strInfosArtiste[4] ?></li>
+                                <li class="infoArtiste__medias__item">
+                                    <a class="infoArtiste__medias__lien" href="<?php echo $strInfosArtiste[4] ?>" target="_blank">
+                                        <span class="infoArtiste__medias__iconeInternet"></span><?php echo $strInfosArtiste[0] ?>
+                                    </a>
+                                </li>
                             <?php } ?>
                             <?php if($strInfosArtiste[5] != null){ ?>
-                                <li class="infoArtiste__medias__item"><span class="infoArtiste__medias__iconeMyspace"></span><?php echo $strInfosArtiste[5] ?></li>
+                                <li class="infoArtiste__medias__item">
+                                    <a class="infoArtiste__medias__lien" href="<?php echo $strInfosArtiste[5] ?>">
+                                        <span class="infoArtiste__medias__iconeMyspace"></span>http://www.myspace.com/
+                                    </a>
+                                </li>
                             <?php } ?>
                             <?php if($strInfosArtiste[4] == null && $strInfosArtiste[5] == null){ ?>
                                 <li class="infoArtiste__medias__retroaction">Aucun lien n'est disponible</li>
@@ -168,9 +178,29 @@
                             for($i = 0; $i < count($arrJours); $i++){
                                 for($j = 0; $j < count($arrJours); $j++){
                                     if(intval($strDateLieu['jour_semaine']) === $i + 1 && intval($strDateLieu['mois']) === $j + 1){?>
-                                        <li class="infoArtiste__representations__item">Heure : <?php echo $strDateLieu['heure'] ?>h <?php echo $strDateLieu['minute'] ?>
-                                        <br> Lieu : <?php echo $strDateLieu['lieu'] ?> 
-                                        <br>Date : <?php echo $arrJours[$i] . " " . $strDateLieu['jour'] . " " . $arrMois[$j] . " " . $strDateLieu['annee'] ?></li>
+                                        <li class="infoArtiste__representations__item">
+                                            <div class="infoArtiste__representations__emplacements">
+                                                <p class="infoArtiste__representations__emplacements__date">
+                                                    <span class="infoArtiste__representations__emplacements__iconeDate"></span><?php echo $arrJours[$i] . " " . $strDateLieu['jour'] . " " . $arrMois[$j] . " " . $strDateLieu['annee'] ?>
+                                                </p>
+                                                <p class="infoArtiste__representations__emplacements__lieu">
+                                                    <span class="infoArtiste__representations__emplacements__iconeLieu"></span><?php echo $strDateLieu['lieu'] ?> 
+                                                </p>
+                                            </div>
+                                            <div class="infoArtiste__representations__heure">
+                                                <img class="infoArtiste__representations__iconeHeure" src="<?php echo $niveau ?>liaisons/images/fiche_artiste/icons_heure.svg" alt="Icône de l'heure">
+                                                <p class="infoArtiste__representations__texteHeure">
+                                                    <?php echo $strDateLieu['heure'] ?>h<?php
+                                                     
+                                                    if($strDateLieu['minute']=="0"){
+                                                        echo "00";
+                                                    } 
+                                                    else{
+                                                        echo $strDateLieu['minute']; 
+                                                    }?>
+                                                </p>
+                                            </div>
+                                        </li>
                                     <?php } ?>
                                 <?php } ?>
                             <?php } ?>
