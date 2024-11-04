@@ -198,7 +198,10 @@
                             <?php for ($cpt2 = 0; $cpt2 < count($arrLieux[$cpt]['info']); $cpt2++) { ; ?>
                                     <a href="<?php echo  $niveau ;?>artistes/fiches/index.php?id_artiste=<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>" class="artistes_section-lien">
                                         <div class="artistes_section-info">
-                                            <img class="artistes_section-image" src="../liaisons/images/Image.png" alt="">
+                                            <picture class="artistes_section-picture">
+                                                <source media="(min-width:920px)" srcset="<?php echo $niveau; ?>liaisons/images/artistes/carre/<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>_0__w290_carre.jpg">
+                                                <img class="artistes_section-image" src="<?php echo $niveau; ?>liaisons/images/artistes/rect/<?php echo $arrLieux[$cpt]['info'][$cpt2]['id_artiste']; ?>_0__w260_rect.jpg" alt="Image de l'artiste <?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste'] ; ?>" style="width:auto;">
+                                            </picture>
                                             <div class="artistes_section-infoGroup">
                                                 <h4 class="h4 artistes_section-infoNom"><?php echo $arrLieux[$cpt]['info'][$cpt2]['artiste']; ?></h4>
                                                 <p class="artistes_section-infoStyles"><?php echo $arrLieux[$cpt]['info'][$cpt2]['styles']; ?></p>

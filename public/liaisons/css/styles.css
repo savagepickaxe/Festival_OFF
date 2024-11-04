@@ -33,21 +33,6 @@
 /* Couleurs de base */
 /* Autres couleurs */
 /** Points de rupture **/
-@import url("https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
-:root {
-  /* Polices de caractères */
-  --container-padding: min(8vw, 8em);
-  --container-padding-small: var(--row-gap);
-  --row-gap: calc(var(--title-size)* 0.3);
-  --col-gap: calc(var(--title-size)* 0.3);
-  --border-radius: calc(var(--title-size)* 0.4);
-  --title-size: clamp(5em, 7.5vw, 7.5em);
-  --container-padding-offset: calc(var(--container-padding) - var(--container-padding-small));
-  --color-light: white;
-  --color-light-rgb: 242, 237, 233;
-}
-
 /** Mixins **/
 /**
 * @author Ève Février - efevrier@cegep-ste-foy.qc.ca
@@ -67,6 +52,8 @@
 /** Box sizing **/
 /* Clearfix */
 /********* Accessibilité *********/
+@import url("https://fonts.googleapis.com/css2?family=Holtwood+One+SC&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap");
 .visuallyhidden,
 .screen-reader-only {
   border: 0;
@@ -666,209 +653,179 @@ h3--desktop,
     text-align: center;
   }
 }
-#container {
-  height: 100vh; /* 100% de la hauteur de la fenêtre */
-  position: absolute;
-  top: -100px;
-  transform: scale(1.5) translateY(-150px);
-  z-index: 1000;
-}
-
-#container canvas {
-  width: 100%;
-  height: 100%;
-  z-index: 90000;
-  position: absolute;
-}
-
 .accueil {
-  padding-left: var(--container-padding);
-  padding-right: var(--container-padding);
-  max-width: calc(var(--title-size) * 14);
-  margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-left: min(8vw, 8em);
+  padding-right: min(8vw, 8em);
+  max-width: calc(clamp(5em, 7.5vw, 7.5em) * 14);
+  margin: 0 auto;
   height: 100vh;
+}
+@media (max-width: 768px) {
+  .accueil {
+    height: 30vh;
+  }
 }
 @media (min-width: 768px) {
   .accueil {
-    padding-left: var(--container-padding-small);
-    padding-right: var(--container-padding-small);
+    padding-left: calc(clamp(5em, 7.5vw, 7.5em) * 0.3);
+    padding-right: calc(clamp(5em, 7.5vw, 7.5em) * 0.3);
   }
 }
-
-.gros-titre {
-  width: 100%;
+.accueil__gros-titre {
   display: inline-flex;
   flex-direction: column;
+  width: 100%;
   gap: 0.03em;
 }
-
-.ligne1 {
+.accueil__gros-titre__ligne1 {
   display: flex;
   flex-direction: row;
-  gap: var(--col-gap);
+  gap: calc(clamp(5em, 7.5vw, 7.5em) * 0.3);
 }
-
-.accueil .gros-titre .ligne1 span, .accueil .gros-titre .ligne2 span {
-  font-size: calc(var(--title-size) * 1.7);
+@media (max-width: 768px) {
+  .accueil__gros-titre__ligne1 {
+    margin-left: 20px;
+  }
+}
+.accueil__gros-titre__ligne1 span {
+  font-size: calc(clamp(5em, 7.5vw, 7.5em) * 1.7);
   font-family: "Times New Roman", Times, serif;
   font-weight: 800;
   line-height: 0.85;
   text-transform: uppercase;
 }
-
-.ligne2 {
+@media (max-width: 768px) {
+  .accueil__gros-titre__ligne1 span {
+    font-size: 10.65vw;
+  }
+}
+.accueil__gros-titre__ligne2 {
   display: flex;
   justify-content: flex-end;
 }
-
-.ligne2 span {
-  color: var(--color-light);
-}
-
-.ligne1, .ligne2 {
-  display: flex;
-  flex-direction: row;
-  gap: var(--col-gap);
-}
 @media (max-width: 768px) {
-  .ligne1, .ligne2 {
+  .accueil__gros-titre__ligne2 {
     margin-left: 20px;
   }
 }
-
-.image-menu {
+.accueil__gros-titre__ligne2 span {
+  font-size: calc(clamp(5em, 7.5vw, 7.5em) * 1.7);
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 800;
+  line-height: 0.85;
+  text-transform: uppercase;
+  color: white;
+}
+@media (max-width: 768px) {
+  .accueil__gros-titre__ligne2 span {
+    color: black;
+    font-size: 10.65vw;
+  }
+}
+.accueil__video {
   width: 100%;
   position: relative;
-  margin-top: calc(var(--title-size) * -1.65 + var(--row-gap));
-  pointer-events: none;
+  margin-top: calc(clamp(5em, 7.5vw, 7.5em) * -1.65 + clamp(5em, 7.5vw, 7.5em) * 0.3);
 }
-
-.video-background {
+@media (max-width: 768px) {
+  .accueil__video {
+    margin: 0;
+  }
+}
+.accueil__video__contenu {
   position: relative;
-  border-radius: var(--border-radius);
+  border-radius: calc(clamp(5em, 7.5vw, 7.5em) * 0.4);
   width: 100%;
   height: unset;
-  --video-aspect-ratio:56.25%;
   overflow: hidden;
   transform: translateZ(0);
   pointer-events: none;
 }
+.accueil__video__contenu::before {
+  content: "";
+  display: block;
+  padding-top: calc(clamp(5em, 7.5vw, 7.5em) * 5);
+}
 @media (max-width: 768px) {
-  .video-background {
+  .accueil__video__contenu::before {
+    padding-top: calc(clamp(5em, 7.5vw, 7.5em) * 2);
+  }
+}
+@media (max-width: 768px) {
+  .accueil__video__contenu {
     height: 120%;
   }
 }
-
-.video-background::before {
-  content: "";
-  display: block;
-  padding-top: calc(var(--title-size) * 5);
-}
-
-.video-tour {
+.accueil__video__contenu__tour {
   position: absolute;
   width: 110%;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-.video-tour::before {
+.accueil__video__contenu__tour::before {
   content: "";
   display: block;
-  padding-top: var(--video-aspect-ratio);
+  padding-top: 56%;
 }
-
-.video-tour video {
+.accueil__video__contenu__tour video {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-
-.h1-boite {
+.accueil__video__contenu2 {
   position: absolute;
   top: -1px;
   right: -1px;
-  background-color: var(--color-light);
-  padding: 0 0 var(--col-gap) var(--col-gap);
-  border-radius: 0 0 0 var(--border-radius);
+  background-color: white;
+  padding: 0 0 calc(clamp(5em, 7.5vw, 7.5em) * 0.3) calc(clamp(5em, 7.5vw, 7.5em) * 0.3);
+  border-radius: 0 0 0 calc(clamp(5em, 7.5vw, 7.5em) * 0.4);
   user-select: none;
-  padding-right: var(--container-padding-offset);
+  padding-right: calc(min(8vw, 8em) - clamp(5em, 7.5vw, 7.5em) * 0.3);
 }
-
-.h1-boite .gros-titre {
+@media (max-width: 768px) {
+  .accueil__video__contenu2 {
+    display: none;
+  }
+}
+.accueil__video__contenu2 .accueil__gros-titre {
   margin-bottom: -0.1075em;
   margin-left: -0.0175em;
   margin-top: -0.025em;
-}
-
-.image-menu .h1-boite .gros-titre {
   font-size: 21.65vw;
-  font-size: calc(var(--title-size) * 1.7);
+  font-size: calc(clamp(5em, 7.5vw, 7.5em) * 1.7);
   font-family: "Times New Roman", Times, serif;
   font-weight: 800;
   line-height: 0.85;
   text-transform: uppercase;
 }
-
-.coin.left-top {
+.accueil__video__contenu2__coin {
   position: absolute;
   top: 0.5px;
   left: 0.5px;
   transform: translate(-100%, 0%) rotate(90deg);
+  width: calc(clamp(5em, 7.5vw, 7.5em) * 0.4 * 1);
+  height: calc(clamp(5em, 7.5vw, 7.5em) * 0.4 * 1);
+  background-image: radial-gradient(circle at 100% 100%, transparent calc(clamp(5em, 7.5vw, 7.5em) * 0.4 * 1), white calc(clamp(5em, 7.5vw, 7.5em) * 0.4 * 1 + 0.5px));
 }
-
-.coin {
-  position: relative;
-  --corner-size:1;
-  width: calc(var(--border-radius) * var(--corner-size));
-  height: calc(var(--border-radius) * var(--corner-size));
-  background-image: radial-gradient(circle at 100% 100%, transparent calc(var(--border-radius) * var(--corner-size)), var(--color-light) calc(var(--border-radius) * var(--corner-size) + 0.5px));
-}
-
-.coin.right-bottom {
-  position: absolute;
-  top: 0.5px;
-  left: 0.5px;
+.accueil .coin2 {
   transform: translate(1007%, 398%) rotate(90deg);
 }
-
 @media (max-width: 768px) {
-  .accueil .gros-titre .ligne1 span, .accueil .gros-titre .ligne2 span {
-    font-size: 10.65vw;
-    font-family: "Times New Roman", Times, serif;
-    font-weight: 800;
-    line-height: 0.85;
-    text-transform: uppercase;
-  }
-  .h1-boite .gros-titre {
+  .accueil .accueil__video__contenu2 .accueil__gros-titre {
     display: none;
   }
-  .h1-boite {
-    display: none;
-  }
-  .accueil {
-    height: 30vh;
-  }
-  .video-background::before {
-    padding-top: calc(var(--title-size) * 2);
-  }
-  .accueil .gros-titre {
+  .accueil .accueil .accueil__gros-titre {
     flex-direction: row;
   }
-  .image-menu {
-    margin: 0;
-  }
-  .ligne2 span {
-    color: black;
-  }
 }
+
 .main {
   display: flex;
   flex-direction: column;
@@ -982,6 +939,7 @@ h3--desktop,
   width: 80%;
   flex-direction: row;
   justify-content: space-between;
+  font-family: "IBM Plex Mono", monospace;
 }
 .dates_section-button {
   width: 50px;
@@ -1037,7 +995,6 @@ h3--desktop,
 }
 .dates_section-listeJour {
   text-align: center;
-  font-family: "IBM Plex Sans";
   font-size: 20px;
   font-style: normal;
   font-weight: 600;
@@ -1045,7 +1002,6 @@ h3--desktop,
 }
 .dates_section-listeDate {
   text-align: center;
-  font-family: "IBM Plex Sans";
   font-size: 40px;
   font-style: normal;
   font-weight: 700;
@@ -1053,7 +1009,6 @@ h3--desktop,
 }
 .dates_section-listeMois {
   text-align: center;
-  font-family: "IBM Plex Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -1117,11 +1072,15 @@ h3--desktop,
   border-radius: 25px;
   border: 5px solid #d1ec7a;
   background: #fff;
+  font-family: Roboto, sans-serif;
+}
+.artistes_section-picture {
+  max-width: 260px;
+  border-radius: 15px;
 }
 .artistes_section-image {
   width: 100%;
-  height: 150px;
-  object-fit: cover;
+  border-radius: 15px;
 }
 .artistes_section-lien {
   text-decoration: none;
@@ -1206,7 +1165,6 @@ h3--desktop,
 .artistes_section-titre {
   color: #000;
   font-feature-settings: "liga" off, "clig" off;
-  font-family: Roboto;
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
@@ -1215,7 +1173,6 @@ h3--desktop,
 .artistes_section-sousTitre {
   color: #000;
   font-feature-settings: "liga" off, "clig" off;
-  font-family: Roboto;
   font-size: 20px;
   font-style: normal;
   font-weight: 400;
@@ -1251,7 +1208,6 @@ h3--desktop,
   .artistes_section-titre {
     color: #000;
     font-feature-settings: "liga" off, "clig" off;
-    font-family: Roboto;
     font-size: 40px;
     font-style: normal;
     font-weight: 600;
@@ -1260,7 +1216,6 @@ h3--desktop,
   .artistes_section-sousTitre {
     color: #000;
     font-feature-settings: "liga" off, "clig" off;
-    font-family: Roboto;
     font-size: 25px;
     font-style: normal;
     font-weight: 400;
@@ -1282,8 +1237,7 @@ h3--desktop,
     gap: 40px;
   }
   .artistes_section-image {
-    width: 145px;
-    height: 145px;
+    max-width: 145px;
     flex-shrink: 0;
   }
   .artistes_section-horaire {
@@ -1364,23 +1318,26 @@ h3--desktop,
   }
 }
 
-.contenu__article {
-  border-radius: 30px;
-  background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
+.contenu {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 30px;
+  background: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
   gap: 20px;
   margin: 100px 0;
   padding: 100px;
   margin-bottom: 50px;
 }
 @media (max-width: 768px) {
-  .contenu__article {
+  .contenu {
     margin-top: 20px;
     padding: 30px;
   }
+}
+.contenu__article {
+  margin-bottom: 50px;
 }
 .contenu__article__artiste {
   border-radius: 25px;
@@ -1391,7 +1348,6 @@ h3--desktop,
   margin: auto;
   justify-content: center;
   padding: 25px 50px 50px 50px;
-  /* Layout en grille avec 2 colonnes : image et texte */
   grid-template-columns: auto 1fr;
   margin-bottom: 50px;
   gap: 20px;
@@ -1464,16 +1420,13 @@ h3--desktop,
   grid-column: 2;
 }
 
-.article {
-  margin-bottom: 50px;
-}
-
 .suggestions {
   background-color: white;
   max-width: 60%;
   border-radius: 25px;
   padding: 50px;
   overflow: hidden;
+  margin: 50px auto;
 }
 @media (max-width: 1023px) {
   .suggestions {
@@ -1498,7 +1451,6 @@ h3--desktop,
     margin: 20px 0px 50px 0px;
   }
 }
-
 .suggestions__article {
   overflow: hidden;
   border-radius: 25px;
@@ -1509,7 +1461,6 @@ h3--desktop,
   margin: auto;
   justify-content: center;
   padding: 25px 50px 50px 50px;
-  /* Layout en grille avec 2 colonnes : image et texte */
   grid-template-columns: auto 1fr;
   margin-bottom: 50px;
   gap: 20px;
@@ -1554,7 +1505,7 @@ h3--desktop,
   color: #D1EC7A;
   margin-top: 20px;
   display: -webkit-box;
-  -webkit-line-clamp: 15; /* Limite à 12 lignes (ou ajustez selon vos besoins) */
+  -webkit-line-clamp: 15;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1565,7 +1516,7 @@ h3--desktop,
     line-height: 18px;
     font-size: 1.3;
     display: -webkit-box;
-    -webkit-line-clamp: 12; /* Limite à 12 lignes (ou ajustez selon vos besoins) */
+    -webkit-line-clamp: 12;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -1587,18 +1538,64 @@ h3--desktop,
   }
 }
 
+/**
+ * @author Daoud Coulibaly 2040480@csfoy.ca
+ * Intégration de la partie détaillée de la fiche d'artiste
+ */
+/*
+ * ------------------
+ * TABLE DES MATIERES
+ * ------------------
+ * Information de l'artiste
+    ** Titre
+    ** Styles
+    ** Provenance
+    ** Biographie
+    ** Image
+ * Conteneur des médias et représentations
+    ** médias/représentations règles générales
+        ***Titre
+        ***Séparateur
+    ** Médias
+        *** Liste
+        *** Item
+        *** Icones
+    ** Représentations
+ */
+/****** Information de l'artiste ****************************/
 .infoArtiste {
   background: linear-gradient(#7c004a 17.31%, #2c695f 82.12%);
-  padding: 100px 220px;
-  border-radius: 100px;
+  padding: 50px 20px;
+  border-radius: 50px;
   color: #D1EC7A;
+  /****** Information de l'artiste ****************************/
+  /** Titre **/
+  /** Styles **/
+  /** Provenance **/
+  /** Biographie **/
+  /** Image **/
+  /****** Conteneur des médias et représentations ****************************/
+  /** médias/représentations règles générales **/
+  /** Médias **/
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste {
+    padding: 30px 220px;
+    border-radius: 100px;
+  }
 }
 .infoArtiste__nom {
   font-family: "Holtwood One SC", serif;
-  font-size: 70px;
-  font-size: 7rem;
+  font-size: 30px;
+  font-size: 3rem;
   text-transform: uppercase;
   text-align: center;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste__nom {
+    font-size: 70px;
+    font-size: 7rem;
+  }
 }
 .infoArtiste__styles {
   font-family: "ibm plex mono";
@@ -1613,22 +1610,111 @@ h3--desktop,
   border-radius: 30px;
 }
 .infoArtiste__provenance {
-  font-size: 36px;
-  font-size: 3.6rem;
+  font-size: 16px;
+  font-size: 1.6rem;
   text-align: center;
-  text-transform: lowercase;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste__provenance {
+    font-size: 36px;
+    font-size: 3.6rem;
+  }
 }
 .infoArtiste__provenance--smallSize {
-  font-size: 22px;
-  font-size: 2.2rem;
   text-transform: lowercase;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste__provenance--smallSize {
+    font-size: 22px;
+    font-size: 2.2rem;
+  }
 }
 .infoArtiste__biographie {
   max-width: 660px;
-  margin: 90px auto 0 auto;
+  margin: 60px auto 0 auto;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste__biographie {
+    margin: 90px auto 0 auto;
+  }
 }
 .infoArtiste img {
   display: block;
+  max-width: 320px;
+  margin: 40px auto;
+  border-radius: 20px;
+  border: solid 5px #D1EC7A;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste img {
+    max-width: 830px;
+    margin: 60px auto;
+  }
+}
+.infoArtiste__conteneurMediasRepresentations {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 40px auto;
+}
+.infoArtiste__medias, .infoArtiste__representations {
+  background-color: white;
+  color: #366A4D;
+  border-radius: 30px;
+  border: solid 10px #D1EC7A;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-height: 400px;
+  padding: 20px;
+  /*** Titre ***/
+  /*** Séparateur ***/
+}
+.infoArtiste__medias__titre, .infoArtiste__representations__titre {
+  font-size: 36px;
+  font-size: 3.6rem;
+  text-transform: uppercase;
+  margin-top: 40px;
+  font-weight: 800;
+}
+.infoArtiste__medias hr, .infoArtiste__representations hr {
+  border: none;
+  border-top: solid 3px #366A4D;
+  margin: 20px 0 25px 0;
+}
+.infoArtiste__medias {
+  /** Liste **/
+  /** Item **/
+  /** Icones **/
+}
+.infoArtiste__medias__liste {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 10px;
+}
+.infoArtiste__medias__item {
+  background-color: #F3F3F3;
+  padding: 17.5px 20px;
+  border-radius: 20px;
+  max-height: 75px;
+  white-space: nowrap;
+  overflow: scroll;
+}
+.infoArtiste__medias__iconeInternet, .infoArtiste__medias__iconeMyspace {
+  min-width: 40px;
+  min-height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+.infoArtiste__medias__iconeInternet {
+  background-image: url("../images/fiche_artiste/icons_internet.svg");
+}
+.infoArtiste__medias__iconeMyspace {
+  background-image: url("../images/fiche_artiste/icons_myspace.svg");
 }
 
 /*# sourceMappingURL=styles.css.map */

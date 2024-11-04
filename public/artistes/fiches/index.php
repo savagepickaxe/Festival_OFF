@@ -131,63 +131,71 @@
                     echo $strStyle['nom'] . " / ";
                 } ?>
             </p>
-            <?php foreach($arrImagesChoisies as $strImage){ ?>
-                <img class="infoArtiste__image" src="<?php echo $niveau ?>liaisons/images/<?php echo $strImage ?>.jpg" alt="Image de l'artiste">
+            <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
+                <picture>
+                    <source media="(min-width: 801px)" srcset="<?php echo $niveau ?>liaisons/images/artistes/rect/<?php echo $id_artiste ?>_0__w830_rect.jpg 1x, <?php echo $niveau ?>liaisons/images/artistes/rect/<?php echo $id_artiste ?>_0__w1660_rect.jpg 2x" type="image/jpg">
+                    <source media="(max-width: 800px)" srcset="<?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w320_carre.jpg 1x, <?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w640_carre.jpg 2x" alt type="image/jpg">
+                    <img class="infoArtiste__image" src="<?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w640_carre.jpg" alt="Image de l'artiste <?php echo $strInfosArtiste[0]?>">
+                </picture>
             <?php } ?>
             <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
                 <p class="infoArtiste__provenance">Provenance : <span class="infoArtiste__provenance--smallSize"><?php echo $strInfosArtiste[2]?>, <?php echo $strInfosArtiste[3] ?></span></p>
                 <p class="infoArtiste__biographie"><?php echo $strInfosArtiste[1] ?></p>
             <?php } ?>
-            <div class="infoArtiste__medias">
-                <h2 class="infoArtiste__medias__titre">Liens de contact</h2>
-                <ul class="infoArtiste__medias__liste">
-                    <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
-                        <?php if($strInfosArtiste[4] != null){ ?>
-                            <li class="infoArtiste__medias__item">Site web : <?php echo $strInfosArtiste[4] ?></li>
-                        <?php } ?>
-                        <?php if($strInfosArtiste[5] != null){ ?>
-                            <li class="infoArtiste__medias__item">Myspace : <?php echo $strInfosArtiste[5] ?></li>
-                        <?php } ?>
-                        <?php if($strInfosArtiste[4] == null && $strInfosArtiste[5] == null){ ?>
-                            <li class="infoArtiste__medias__retroaction">Aucun lien n'est disponible</li>
-                        <?php } ?>
-                    <?php } ?>        
-                </ul>
-            </div>
-            <div class="infoArtiste__representations">
-                <h2 class="infoArtiste__representations__titre">Représentations</h2>
-                <ul class="infoArtiste__representations__liste">
-                    <?php foreach($arrDateLieu as $strDateLieu){ 
-                        for($i = 0; $i < count($arrJours); $i++){
-                            for($j = 0; $j < count($arrJours); $j++){
-                                if(intval($strDateLieu['jour_semaine']) === $i + 1 && intval($strDateLieu['mois']) === $j + 1){?>
-                                    <li class="infoArtiste__representations__item">Heure : <?php echo $strDateLieu['heure'] ?>h <?php echo $strDateLieu['minute'] ?>
-                                    <br> Lieu : <?php echo $strDateLieu['lieu'] ?> 
-                                    <br>Date : <?php echo $arrJours[$i] . " " . $strDateLieu['jour'] . " " . $arrMois[$j] . " " . $strDateLieu['annee'] ?></li>
+            <div class="infoArtiste__conteneurMediasRepresentations">
+                <div class="infoArtiste__medias">
+                    <h2 class="infoArtiste__medias__titre">Liens de contact</h2>
+                    <hr>
+                    <ul class="infoArtiste__medias__liste">
+                        <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
+                            <?php if($strInfosArtiste[4] != null){ ?>
+                                <li class="infoArtiste__medias__item"><span class="infoArtiste__medias__iconeInternet"></span><?php echo $strInfosArtiste[4] ?></li>
+                            <?php } ?>
+                            <?php if($strInfosArtiste[5] != null){ ?>
+                                <li class="infoArtiste__medias__item"><span class="infoArtiste__medias__iconeMyspace"></span><?php echo $strInfosArtiste[5] ?></li>
+                            <?php } ?>
+                            <?php if($strInfosArtiste[4] == null && $strInfosArtiste[5] == null){ ?>
+                                <li class="infoArtiste__medias__retroaction">Aucun lien n'est disponible</li>
+                            <?php } ?>
+                        <?php } ?>        
+                    </ul>
+                </div>
+                <div class="infoArtiste__representations">
+                    <h2 class="infoArtiste__representations__titre">Représentations</h2>
+                    <hr>
+                    <ul class="infoArtiste__representations__liste">
+                        <?php foreach($arrDateLieu as $strDateLieu){ 
+                            for($i = 0; $i < count($arrJours); $i++){
+                                for($j = 0; $j < count($arrJours); $j++){
+                                    if(intval($strDateLieu['jour_semaine']) === $i + 1 && intval($strDateLieu['mois']) === $j + 1){?>
+                                        <li class="infoArtiste__representations__item">Heure : <?php echo $strDateLieu['heure'] ?>h <?php echo $strDateLieu['minute'] ?>
+                                        <br> Lieu : <?php echo $strDateLieu['lieu'] ?> 
+                                        <br>Date : <?php echo $arrJours[$i] . " " . $strDateLieu['jour'] . " " . $arrMois[$j] . " " . $strDateLieu['annee'] ?></li>
+                                    <?php } ?>
                                 <?php } ?>
                             <?php } ?>
                         <?php } ?>
-                    <?php } ?>
-                </ul>
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="seggestionArtiste">
-        <h2 class="seggestionArtiste__titre">Autres artistes à découvrir</h2>
-        <ul class="seggestionArtiste__liste">
-            <?php foreach($arrArtistesSuggestion as $artiste){ ?>
-                <li class="seggestionArtiste__item">
-                        <!-- Lien de l'image à finir -->
-                        <img src="<?php echo $niveau ?>liaisons/images/artistes/<?php echo $artiste['id'] ?>/..." alt="">
-                        <?php echo $artiste['nom'] ?>
-                        <button>
-                            <a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id'] ?>">
-                                Voir l'artiste
-                            </a>
-                        </button>
-                    </a>
-                </li>
-            <?php } ?>
-        </ul>
+            <h2 class="seggestionArtiste__titre">Autres artistes à découvrir</h2>
+            <ul class="seggestionArtiste__liste">
+                <?php foreach($arrArtistesSuggestion as $artiste){ ?>
+                    <li class="seggestionArtiste__item">
+                            <!-- Lien de l'image à finir -->
+                            <img src="<?php echo $niveau ?>liaisons/images/artistes/<?php echo $artiste['id'] ?>/..." alt="">
+                            <?php echo $artiste['nom'] ?>
+                            <button>
+                                <a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id'] ?>">
+                                    Voir l'artiste
+                                </a>
+                            </button>
+                        </a>
+                    </li>
+                <?php } ?>
+            </ul>
         </div>
     </main>
         <?php include($niveau . "liaisons/fragments/piedDePage.inc.php") ?>

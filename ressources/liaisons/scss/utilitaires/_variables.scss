@@ -23,25 +23,23 @@ $bleuMoyenTransparent : transparentize($bleuMoyen, 0.50);
 
 /** Points de rupture **/
 $desktop : 601px;
-:root{
-    /* Polices de caractères */
-    //Calcul padding
-    --container-padding: min(8vw, 8em);
-    --container-padding-small: var(--row-gap);
-    --row-gap: calc(var(--title-size)* 0.3);
-    --col-gap: calc(var(--title-size)* 0.3);
-
-    --border-radius: calc(var(--title-size)* 0.4);
-    --title-size: clamp(5em, 7.5vw, 7.5em);
 
 
-   
+// Définition des variables en SCSS
+$padding: min(8vw, 8em);
+$titre: clamp(5em, 7.5vw, 7.5em);
+$rgap: calc($titre * 0.3);
+$petit-padding: $rgap;
 
-    --container-padding-offset: calc(var(--container-padding) - var(--container-padding-small));
+$gap: calc($titre * 0.3);
+$bordure: calc($titre * 0.4);
 
-    --color-light: white;
-    --color-light-rgb: 242, 237, 233;
+$coin: 1;
+$padding-offset: calc($padding - $petit-padding);
+$blanc: white;
+$blanc-rgb: 242, 237, 233;
 
-}
+
+
 
    
