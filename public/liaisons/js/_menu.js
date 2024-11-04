@@ -59,7 +59,3 @@ window.addEventListener('load', function () {
   menu.configurerNav();
 });
 
-// GSAP
-document.addEventListener("DOMContentLoaded", (event) => {
-  gsap.registerPlugin(ScrollTrigger);
-});
