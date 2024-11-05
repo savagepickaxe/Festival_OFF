@@ -419,7 +419,6 @@ h3--desktop,
   text-align: left;
   font-family: "Holtwood One SC";
   font-size: 30px;
-  font-style: normal;
   font-weight: 400;
   line-height: normal;
   margin-left: 20px;
@@ -472,7 +471,6 @@ h3--desktop,
     text-align: center;
     font-family: "Holtwood One SC";
     font-size: 50px;
-    font-style: normal;
     font-weight: 400;
     line-height: normal;
     margin-left: 20px;
@@ -570,23 +568,23 @@ h3--desktop,
   align-items: center;
 }
 .dates_section-listeJour {
+  font-family: Roboto, sans-serif;
   text-align: center;
   font-size: 20px;
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
 .dates_section-listeDate {
+  font-family: Roboto, sans-serif;
   text-align: center;
   font-size: 40px;
-  font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
 .dates_section-listeMois {
+  font-family: Roboto, sans-serif;
   text-align: center;
   font-size: 16px;
-  font-style: normal;
   font-weight: 600;
   line-height: normal;
 }
@@ -740,17 +738,13 @@ h3--desktop,
 }
 .artistes_section-titre {
   color: #000;
-  font-feature-settings: "liga" off, "clig" off;
   font-size: 22px;
-  font-style: normal;
   font-weight: 600;
   line-height: 24px;
 }
 .artistes_section-sousTitre {
   color: #000;
-  font-feature-settings: "liga" off, "clig" off;
   font-size: 20px;
-  font-style: normal;
   font-weight: 400;
   line-height: 24px;
 }
@@ -785,7 +779,6 @@ h3--desktop,
     color: #000;
     font-feature-settings: "liga" off, "clig" off;
     font-size: 40px;
-    font-style: normal;
     font-weight: 600;
     line-height: 35px;
   }
@@ -793,7 +786,6 @@ h3--desktop,
     color: #000;
     font-feature-settings: "liga" off, "clig" off;
     font-size: 25px;
-    font-style: normal;
     font-weight: 400;
     line-height: 24px;
   }
@@ -817,6 +809,7 @@ h3--desktop,
     flex-shrink: 0;
   }
   .artistes_section-horaire {
+    font-family: Roboto, sans-serif;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -857,6 +850,7 @@ h3--desktop,
   }
   .artistes_section-infoNom {
     align-self: stretch;
+    font-family: "IBM Plex Mono", monospace;
     color: #3a6a45;
     text-align: left;
     font-feature-settings: "liga" off, "clig" off;
@@ -865,6 +859,7 @@ h3--desktop,
   }
   .artistes_section-infoStyles {
     color: #3a6a45;
+    font-family: "IBM Plex Mono", monospace;
     padding-left: 30px;
     background-image: url("../images/programmation/icones/Style.png");
     background-position: left;
@@ -872,7 +867,7 @@ h3--desktop,
   }
   .artistes_section-infoPermission {
     color: #354e98;
-    font-style: normal;
+    font-family: "IBM Plex Mono", monospace;
     font-weight: 400;
     padding-left: 30px;
     background-image: url("../images/programmation/icones/Permission.png");
@@ -881,6 +876,7 @@ h3--desktop,
   }
   .artistes_section-infoTemp {
     display: flex;
+    font-family: "IBM Plex Mono", monospace;
     padding: 5px 20px;
     justify-content: center;
     align-items: center;
@@ -888,7 +884,6 @@ h3--desktop,
     background: #3a6a45;
     color: #d1ec7a;
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
     max-width: 100px;
   }
@@ -1397,6 +1392,12 @@ h3--desktop,
   width: 100%;
   gap: 0.03em;
 }
+@media (max-width: 768px) {
+  .accueil__gros-titre {
+    flex-direction: row;
+    gap: 0.03em;
+  }
+}
 .accueil__gros-titre__ligne1 {
   display: flex;
   flex-direction: row;
@@ -1677,7 +1678,7 @@ h3--desktop,
 }
 @media screen and (min-width: 601px) {
   .infoArtiste__image {
-    max-width: 830px;
+    max-width: 200px;
     margin: 60px auto;
   }
 }
