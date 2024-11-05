@@ -102,13 +102,12 @@
     /** Image **/
     &__image{
         display: block;
-        max-width: 320px;
+        max-width: 100%;
         margin: 40px auto 20px auto;
         border-radius: 20px;
         border: solid 5px $vertPrincipal;
 
         @media screen and (min-width: $desktop){
-            max-width: 200px;
             margin: 60px auto;
         }
     }

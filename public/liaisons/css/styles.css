@@ -1671,14 +1671,13 @@ h3--desktop,
 }
 .infoArtiste__image {
   display: block;
-  max-width: 320px;
+  max-width: 100%;
   margin: 40px auto 20px auto;
   border-radius: 20px;
   border: solid 5px #D1EC7A;
 }
 @media screen and (min-width: 601px) {
   .infoArtiste__image {
-    max-width: 200px;
     margin: 60px auto;
   }
 }
