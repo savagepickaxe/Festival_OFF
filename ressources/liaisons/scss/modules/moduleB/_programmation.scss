@@ -16,7 +16,6 @@
             text-align: left;
             font-family: "Holtwood One SC";
             font-size: 30px;
-            font-style: normal;
             font-weight: 400;
             line-height: normal;
             margin-left: 20px;
@@ -71,7 +70,6 @@
                 text-align: center;
                 font-family: "Holtwood One SC";
                 font-size: 50px;
-                font-style: normal;
                 font-weight: 400;
                 line-height: normal;
                 margin-left: 20px;
@@ -170,23 +168,23 @@
         align-items: center;
     }
     &-listeJour {
+        font-family: $fontePrimaire;
         text-align: center;
         font-size: 20px;
-        font-style: normal;
         font-weight: 600;
         line-height: normal;
     }
     &-listeDate {
+        font-family: $fontePrimaire;
         text-align: center;
         font-size: 40px;
-        font-style: normal;
         font-weight: 700;
         line-height: normal;
     }
     &-listeMois {
+        font-family: $fontePrimaire;
         text-align: center;
         font-size: 16px;
-        font-style: normal;
         font-weight: 600;
         line-height: normal;
     }
@@ -340,17 +338,13 @@
     }
     &-titre {
         color: #000;
-        font-feature-settings: "liga" off, "clig" off;
         font-size: 22px;
-        font-style: normal;
         font-weight: 600;
         line-height: 24px;
     }
     &-sousTitre {
         color: #000;
-        font-feature-settings: "liga" off, "clig" off;
         font-size: 20px;
-        font-style: normal;
         font-weight: 400;
         line-height: 24px;
     }
@@ -384,7 +378,6 @@
             color: #000;
             font-feature-settings: "liga" off, "clig" off;
             font-size: 40px;
-            font-style: normal;
             font-weight: 600;
             line-height: 35px;
         }
@@ -392,7 +385,6 @@
             color: #000;
             font-feature-settings: "liga" off, "clig" off;
             font-size: 25px;
-            font-style: normal;
             font-weight: 400;
             line-height: 24px;
         }
@@ -416,6 +408,7 @@
         }
         // Horaire
         &-horaire {
+            font-family: $fontePrimaire;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
@@ -457,6 +450,7 @@
             }
             &Nom {
                 align-self: stretch;
+                font-family: $fonteSecondaire;
                 color: #3a6a45;
                 text-align: left;
                 font-feature-settings: "liga" off, "clig" off;
@@ -465,6 +459,7 @@
             }
             &Styles {
                 color: #3a6a45;
+                font-family: $fonteSecondaire;
                 padding-left: 30px;
                 background-image: url("../images/programmation/icones/Style.png");
                 background-position: left;
@@ -472,7 +467,7 @@
             }
             &Permission {
                 color: #354e98;
-                font-style: normal;
+                font-family: $fonteSecondaire;
                 font-weight: 400;
                 padding-left: 30px;
                 background-image: url("../images/programmation/icones/Permission.png");
@@ -481,6 +476,7 @@
             }
             &Temp {
                 display: flex;
+                font-family: $fonteSecondaire;
                 padding: 5px 20px;
                 justify-content: center;
                 align-items: center;
@@ -488,7 +484,6 @@
                 background: #3a6a45;
                 color: #d1ec7a;
                 font-size: 16px;
-                font-style: normal;
                 font-weight: 400;
                 max-width: 100px;
             }
