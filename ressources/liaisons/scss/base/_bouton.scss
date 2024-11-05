@@ -1,35 +1,41 @@
 /**
-* @author Prenom Nom courriel
+* @author Daoud Coulibaly 2040480@csfoy.ca
 */
 @mixin boutonCommun {
   text-decoration: none;
-  border-radius: 18px;
-  padding: 0.5em 1em;
+  border-radius: 5px;
+  padding: 14px 32px;
 }
 
 .bouton {
   @include boutonCommun;
-  background-color: $vertLime;
-  color: black;
-  &:after {
-    //content: "»";
-    margin-left: 0.4em;
+  background-color: $violetPrincipal;
+  color: white;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+
+  &__lien{
+    text-decoration: none;
+    color: white;
+    font-family: $fonteSecondaire;
+    @include fontSize(16px);
   }
-  &:hover {
-    background-color: transparentize($vertLime, 0.25);
+  &:hover, &:active {
+    background-color: $violetSurvol;
+    color: $violetTexteSurvol;
   }
-  &:active {
-    background-color: transparentize($vertLime, 0.5);
+  &:focus {
+    outline-color: $violetSurvol;
   }
-  &--inverse {
-    @include boutonCommun();
-    background-color: white;
-    border: 2px solid black;
-    &:hover {
-      border-color: transparentize($vertLime, 0.25);
-    }
-    &:active {
-      border-color: transparentize($vertLime, 0.5);
+
+  &__suivant, &__precedent{
+    background-color: transparent;
+    border: none;
+    outline: none;
+
+    &__image{
+      cursor: pointer;
     }
   }
 }

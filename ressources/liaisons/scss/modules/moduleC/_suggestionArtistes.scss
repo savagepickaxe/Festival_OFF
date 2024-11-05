@@ -1,0 +1,119 @@
+/**
+    * @file _suggestionArtistes.scss
+    * @brief Feuille de style pour la section suggestion d'artistes
+    * @version 1.0
+    * @author Daoud Coulibaly 2040480@csfoy.ca
+    * @date 2024-11-04
+*/
+/*
+ * ------------------
+ * TABLE DES MATIERES
+ * ------------------
+ * Suggestions d'artistes
+    ** Titre
+    ** Liste
+    ** Item
+    ** Informations
+        *** Image
+        *** Nom
+        *** Style
+            
+ */
+
+ /****** Suggestions d'artistes ****************************/
+.seggestionArtiste{
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 25px;
+    box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25);
+
+    @media screen and (min-width: $desktop){
+        max-width: 80%;
+        margin: 0 auto;
+        padding: 50px;
+        min-width: 80%; 
+    }
+
+    /** Titre **/
+    &__titre{
+        @include fontSize(30px);
+        font-weight: 800;
+        text-transform: none;
+        color: $vertSecondaire;
+
+        @media screen and (min-width: $desktop){
+            @include fontSize(36px);
+        }
+    }
+
+    hr{
+        border: none;
+        border-top: solid 3px $vertSecondaire;
+        margin-top: 5px;
+        margin-bottom: 35px;
+    }
+
+    /** Liste **/
+    &__liste{
+        list-style: none;
+        @include flex(column, center, default, 15px, nowrap);
+
+        @media screen and (min-width: $desktop){
+            @include flex(row, center, center, 20px, nowrap);
+        }
+    }
+
+    /** Item **/
+    &__item{
+        @include flex(column, center, default, 20px, nowrap);
+        background-color: #f3f3f3;
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.25);
+
+        @media screen and (min-width: $desktop){
+            max-width: 250px;
+        }
+    }
+
+    /** Informatios **/
+    &__infos{
+        background: $gradientSansRotation;
+        @include flex(column, center, default, default, nowrap);
+        padding: 15px;
+        border-radius: 15px;
+
+        /** Image **/
+        &__image{
+            display: block;
+            border-radius: 10px;
+            border: solid 5px $vertPrincipal;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /** Nom **/
+        &__nom{
+            text-align: center;
+            font-family: $fontePrimaire;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: $vertPrincipal;
+            margin: 25px auto 5px auto;
+        }
+
+        /** Style **/
+        &__style{
+            font-family: $fonteSecondaire;
+            color: $vertPrincipal;
+            @include fontSize(20px);
+            font-weight: 300;
+            text-align: center;
+            max-width: 100%;
+            text-overflow: ellipsis;
+        }
+    }
+
+}

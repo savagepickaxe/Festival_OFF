@@ -1,7 +1,7 @@
 @charset "UTF-8";
 
 /**
- * @author Prenom Nom <courriel>
+ * @author Daoud Coulibaly 2040480@csfoy.ca
  * @todo Lier les modules avec des instructions @import
  */
 
@@ -54,18 +54,15 @@
 
 /****** MODULES *****************************/
 @import "modules/menu";
+@import "modules/moduleB/programmation";
+@import "modules/moduleA/artiste";
+@import "modules/moduleA/artistesSugg";
 
 /****** LAYOUT *****************************/
 
 @import "layout/entete";
 @import "layout/piedDePage";
 @import "layout/accueil";
+@import "layout/ficheArtiste";
 
 
-@import "modules/moduleB/programmation";
-@import "modules/moduleA/artiste";
-
-
-@import "modules/moduleA/artistesSugg";
-
-@import "modules/moduleC/infoArtiste";

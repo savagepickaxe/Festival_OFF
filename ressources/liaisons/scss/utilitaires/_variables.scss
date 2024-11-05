@@ -1,5 +1,5 @@
 /**
-* @author Prenom Nom courriel
+* @author Daoud Coulibaly 2040480@csfoy.ca
 */
 
 /** Polices de caractères **/
@@ -10,14 +10,15 @@
 
 /* Couleurs de base */
 $gradient: linear-gradient(152deg, #7c004a 17.31%, #2c695f 82.12%);
-$bleuMoyen: #358ae0;
-$bleuPale: #68a8e8;
-$vertLime: #bbd531;
-$bleuMinuit: #012d61;
-$bleuMarin: #2678B5;
+$gradientSansRotation: linear-gradient(#7c004a 17.31%, #2c695f 82.12%);
+$gradient2: linear-gradient(#E7FFDC, #E6E5FF);
 
-$bleuMoyenTransparent : transparentize($bleuMoyen, 0.50);
+$vertPrincipal: #D1EC7A;
+$vertSecondaire: #366A4D;
 
+$violetPrincipal: #6851FF;
+$violetSurvol: #6A3D96;
+$violetTexteSurvol: #DEB8FF;
 /* Autres couleurs */
 
 

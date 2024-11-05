@@ -31,40 +31,52 @@
         $arrDateLieu[$i]['annee'] = $ligne['annee'];
     }
 
+    $pdoResultatDateLieu->closeCursor();
+
     //----------------------------------------------------------------------------------------------------//
     //Requête pour obtenir le lieu de provenance
     $strRequeteInfosArtiste = 'SELECT artistes.nom, description, provenance, pays, site_web, myspace FROM artistes 
                                 WHERE id=' . $id_artiste;
 
     $pdoResultatInfosArtiste = $pdoConnexion->query($strRequeteInfosArtiste);
-    $arrInfosArtiste = $pdoResultatInfosArtiste->fetchAll(PDO::FETCH_NUM);
+    // $arrInfosArtiste = $pdoResultatInfosArtiste->fetchAll(PDO::FETCH_NUM);
+
+    $arrInfosArtiste = array();
+    for($i = 0; $ligne = $pdoResultatInfosArtiste->fetch(PDO::FETCH_NUM); $i++){
+        $arrInfosArtiste[$i][0] = $ligne[0];
+        $arrInfosArtiste[$i][1] = $ligne[1];
+        $arrInfosArtiste[$i][2] = $ligne[2];
+        $arrInfosArtiste[$i][3] = $ligne[3];
+        $arrInfosArtiste[$i][4] = $ligne[4];
+        $arrInfosArtiste[$i][5] = $ligne[5];
+
+        //----------------------------------------//
+        //Requête pour obtenir les styles de l'artiste
+        $strRequeteStyleParArtiste = "SELECT styles.nom FROM styles_artistes  
+                                      INNER JOIN styles ON styles_artistes.style_id = styles.id 
+                                      WHERE artiste_id=" . $id_artiste . " ORDER BY styles.nom";
+
+        $pdoResultatStyleParArtiste = $pdoConnexion->query($strRequeteStyleParArtiste);
+
+        $strResultatStyleParArtiste = array();
+        $strStyles = "";
+        for($j = 0; $ligneStyle = $pdoResultatStyleParArtiste->fetch(); $j++){
+             if($strStyles != ""){
+                 $strStyles = $strStyles . ", ";    //ajout d'une virgule lorsque nécessaire
+             }
+             else{
+                 $strStyles = "";
+             }
+             $strStyles = $strStyles . $ligneStyle['nom'];
+        }
+         $arrInfosArtiste[$i]['styles'] = $strStyles;
+
+        $pdoResultatStyleParArtiste->closeCursor();
+    }
 
     $pdoResultatInfosArtiste->closeCursor();
 
-    //----------------------------------------------------------------------------------------------------//
-    //Requête pour obtenir tous les styles de l'artiste
-    $strRequeteStyles = 'SELECT styles.nom, styles_artistes.style_id FROM styles 
-                         INNER JOIN styles_artistes ON styles.id=styles_artistes.style_id 
-                         WHERE styles_artistes.artiste_id=' . $id_artiste;
     
-    $pdoResultatStyles = $pdoConnexion->query($strRequeteStyles);
-    $arrStyles = $pdoResultatStyles->fetchAll();
-
-    //----------------------------------------------------------------------------------------------------//
-    //Gestion d'affichage des images
-
-    $arrTotalImages = array("test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10");
-    $intNbImagesAffichage = rand(3, 5);
-    $arrImagesChoisies = array();
-
-    for($i = 0; $i < $intNbImagesAffichage; $i++){
-        $intNbTotalImages = count($arrTotalImages);
-        $intIndexHazard = rand(0, $intNbTotalImages - 1);
-		array_push($arrImagesChoisies,$arrTotalImages[$intIndexHazard]);
-		array_splice($arrTotalImages,$intIndexHazard,1);
-        // print_r($arrImagesChoisies); echo "<br>";
-    }
-
     //---------------------------------- Suggestions d'artistes ----------------------------------//
 
     //Sélection aléatoire de 3 à 5 artistes
@@ -84,6 +96,29 @@
     for($i = 0; $ligne = $pdoResultatSuggestion->fetch(); $i++){
         $arrArtistesSuggestionPotentiel[$i]['nom'] = $ligne['nom'];
         $arrArtistesSuggestionPotentiel[$i]['id'] = $ligne['id'];
+
+        //----------------------------------------//
+        //Requête pour obtenir les styles de l'artiste
+        $strRequeteStyleParArtiste = "SELECT styles.nom FROM styles_artistes  
+                                      INNER JOIN styles ON styles_artistes.style_id = styles.id 
+                                      WHERE artiste_id=" . $arrArtistesSuggestionPotentiel[$i]['id'] . " ORDER BY styles.nom";
+
+        $pdoResultatStyleParArtiste = $pdoConnexion->query($strRequeteStyleParArtiste);
+
+        $strResultatStyleParArtiste = array();
+        $strStyles = "";
+        for($j = 0; $ligneStyle = $pdoResultatStyleParArtiste->fetch(); $j++){
+             if($strStyles != ""){
+                 $strStyles = $strStyles . ", ";    //ajout d'une virgule lorsque nécessaire
+             }
+             else{
+                 $strStyles = "";
+             }
+             $strStyles = $strStyles . $ligneStyle['nom'];
+        }
+         $arrArtistesSuggestionPotentiel[$i]['styles'] = $strStyles;
+
+        $pdoResultatStyleParArtiste->closeCursor();
     }
 
     //Fermeture de la requête
@@ -113,32 +148,48 @@
         } ?>
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Page d'un artiste pour le Festival OFF" />
-    <meta name="keywords" content="Festival, Music, Artistes, Genre, Description" />
+    <meta name="description" content="
+        <?php foreach($arrInfosArtiste as $strInfosArtiste){ 
+            echo $strInfosArtiste[1];
+        } ?>
+     " />
+    <meta name="keywords" content="Festival, Festival OFF, Musique, Artistes, Concert, <?php
+            foreach($arrInfosArtiste as $strInfosArtiste){ 
+            echo $strInfosArtiste['styles'];
+        } ?>
+    " />
     <meta name="author" content="Daoud Coulibaly" />
     <?php include($niveau . "liaisons/fragments/headlinks.inc.php") ?>
 </head>
 <body class="body">
-    <a href="#contenu">Aller au contenu</a>
+    <a href="#contenu" class="screen-reader-only focusable">Aller au contenu</a>
     <?php include($niveau . "liaisons/fragments/entete.inc.php") ?>
-    <main>
-        <div class="infoArtiste">
+    <main class="ficheArtiste-main" role="main">
+        <section class="infoArtiste">
             <h1 class="infoArtiste__nom" id="contenu">
                 <?php foreach($arrInfosArtiste as $strInfosArtiste){ 
                     echo $strInfosArtiste[0];
                 } ?>    
             </h1>
             <p class="infoArtiste__styles">
-                <?php foreach($arrStyles as $strStyle){
-                    echo $strStyle['nom'] . " / ";
+                <?php foreach($arrInfosArtiste as $strInfosArtiste){
+                    echo $strInfosArtiste['styles'];
                 } ?>
             </p>
             <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
                 <picture>
-                    <source media="(min-width: 801px)" srcset="<?php echo $niveau ?>liaisons/images/artistes/rect/<?php echo $id_artiste ?>_0__w830_rect.jpg 1x, <?php echo $niveau ?>liaisons/images/artistes/rect/<?php echo $id_artiste ?>_0__w1660_rect.jpg 2x" type="image/jpg">
-                    <source media="(max-width: 800px)" srcset="<?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w320_carre.jpg 1x, <?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w640_carre.jpg 2x" alt type="image/jpg">
-                    <img class="infoArtiste__image" src="<?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w640_carre.jpg" alt="Image de l'artiste <?php echo $strInfosArtiste[0]?>">
+                    <source class="infoArtiste__image--table" media="(min-width: 801px)" srcset="<?php echo $niveau ?>liaisons/images/artistes/rect/<?php echo $id_artiste ?>_0__w830_rect.jpg 1x, <?php echo $niveau ?>liaisons/images/artistes/rect/<?php echo $id_artiste ?>_0__w1660_rect.jpg 2x" type="image/jpg">
+                    <source class="infoArtiste__image--mobile" media="(max-width: 800px)" srcset="<?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w320_carre.jpg 1x, <?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w640_carre.jpg 2x" type="image/jpg">
+                    <img class="infoArtiste__image" src="<?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $id_artiste ?>_0__w640_carre.jpg" alt="Image de l'artiste <?php echo $strInfosArtiste[0]?>" title="Image de l'artiste <?php echo $strInfosArtiste[0]?>">
                 </picture>
+                <div class="infoArtiste__carrousselControls">
+                    <button id="btn-precedent" class="bouton__precedent">
+                        <img class="bouton__precedent__image" src="<?php echo $niveau ?>liaisons/images/fiche_artiste/button_carroussel-precedent.svg" alt="Afficher l'image précédente" title="Afficher l'image précédente">
+                    </button>
+                    <button id="btn-suivant" class="bouton__suivant">
+                        <img class="bouton__suivant__image" src="<?php echo $niveau ?>liaisons/images/fiche_artiste/button_carroussel-suivant.svg" alt="Afficher l'image suivante" title="Afficher l'image suivante">
+                    </button>
+                </div>
             <?php } ?>
             <?php foreach($arrInfosArtiste as $strInfosArtiste){ ?>
                 <p class="infoArtiste__provenance">Provenance : <span class="infoArtiste__provenance--smallSize"><?php echo $strInfosArtiste[2]?>, <?php echo $strInfosArtiste[3] ?></span></p>
@@ -188,7 +239,7 @@
                                                 </p>
                                             </div>
                                             <div class="infoArtiste__representations__heure">
-                                                <img class="infoArtiste__representations__iconeHeure" src="<?php echo $niveau ?>liaisons/images/fiche_artiste/icons_heure.svg" alt="Icône de l'heure">
+                                                <img class="infoArtiste__representations__iconeHeure" src="<?php echo $niveau ?>liaisons/images/fiche_artiste/icons_heure.svg" alt="" title="">
                                                 <p class="infoArtiste__representations__texteHeure">
                                                     <?php echo $strDateLieu['heure'] ?>h<?php
                                                      
@@ -208,25 +259,29 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="seggestionArtiste">
+        </section>
+        <section class="seggestionArtiste">
             <h2 class="seggestionArtiste__titre">Autres artistes à découvrir</h2>
+            <hr>
             <ul class="seggestionArtiste__liste">
                 <?php foreach($arrArtistesSuggestion as $artiste){ ?>
                     <li class="seggestionArtiste__item">
-                            <!-- Lien de l'image à finir -->
-                            <img src="<?php echo $niveau ?>liaisons/images/artistes/<?php echo $artiste['id'] ?>/..." alt="">
-                            <?php echo $artiste['nom'] ?>
-                            <button>
-                                <a href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id'] ?>">
-                                    Voir l'artiste
-                                </a>
-                            </button>
+                        <div class="seggestionArtiste__infos">
+                            <img class="seggestionArtiste__infos__image" src="<?php echo $niveau ?>liaisons/images/artistes/carre/<?php echo $artiste['id'] ?>_0__w185_carre.jpg" alt="Image de l'artiste <?php echo $artiste['nom'] ?>" title="Image de l'artiste <?php echo $artiste['nom'] ?>">
+                            <h3 class="seggestionArtiste__infos__nom">
+                                <?php echo $artiste['nom'] ?>
+                            </h3>
+                            <p class="seggestionArtiste__infos__style">
+                                <?php echo $artiste['styles'] ?>
+                            </p>
+                        </div>
+                        <a class="bouton bouton__lien" href="<?php echo $niveau ?>artistes/fiches/index.php?id_artiste=<?php echo $artiste['id'] ?>">
+                            Voir l'artiste
                         </a>
                     </li>
                 <?php } ?>
             </ul>
-        </div>
+        </section>
     </main>
         <?php include($niveau . "liaisons/fragments/piedDePage.inc.php") ?>
 

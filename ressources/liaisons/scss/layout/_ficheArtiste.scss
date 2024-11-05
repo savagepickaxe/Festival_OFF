@@ -1,0 +1,31 @@
+/**
+ * @file _ficheArtiste.scss
+ * @brief Feuille de style pour la fiche d'artiste
+ * @version 1.0
+ * @author Daoud Coulibaly 2040480@csfoy.ca
+ */
+
+/*
+ * ------------------
+ * TABLE DES MATIERES
+ * ------------------
+ * Information de l'artiste
+ * Suggestions d'artistes
+ * Mise en page
+ */
+
+/****** Information de l'artiste ****************************/
+@import "../modules/moduleC/infoArtiste";
+
+/******* Suggestions d'artistes ****************************/
+@import "../modules/moduleC/suggestionArtistes";
+
+/******* Mise en page **************************************/
+.ficheArtiste-main{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    background: $gradient2;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}

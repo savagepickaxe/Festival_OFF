@@ -1,6 +1,7 @@
 /**
 * @author Ève Février - efevrier@cegep-ste-foy.qc.ca
 * @author Yves Hélie - yves.helie@cegep-ste-foy.qc.ca
+* @author Daoud Coulibaly 2040480@csfoy.ca
 */
 
 /**
@@ -67,5 +68,14 @@
     @include visuallyhidden;
 }
 
+/********* Typographie *********/
+@mixin flex($direction, $x-align, $y-align, $gap, $wrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $x-align;
+    align-items: $y-align;
+    gap: $gap;
+    flex-wrap: $wrap;
+}
 
 

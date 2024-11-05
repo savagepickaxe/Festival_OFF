@@ -1,8 +1,10 @@
 /**
- * @author Daoud Coulibaly 2040480@csfoy.ca
- * Intégration de la partie détaillée de la fiche d'artiste
- */
-
+    * @file _infoArtiste.scss
+    * @brief Feuille de style pour la section détaillée de la fiche d'artiste
+    * @version 1.0
+    * @author Daoud Coulibaly 2040480@csfoy.ca
+    * @date 2024-11-04
+*/
 /*
  * ------------------
  * TABLE DES MATIERES
@@ -18,18 +20,23 @@
         ***Titre
         ***Séparateur
         *** Liste
+        *** Lien
     ** Médias
         *** Item
         *** Icones
     ** Représentations
+        *** Item
+        *** Lieu et date
+            **** Icones
+        *** Heure
  */
 
 /****** Information de l'artiste ****************************/
 .infoArtiste{
-    background: linear-gradient(#7c004a 17.31%, #2c695f 82.12%);
+    background: $gradientSansRotation;
     padding:  50px 20px;
     border-radius: 50px;
-    color: #D1EC7A;
+    color: $vertPrincipal;
 
     @media screen and (min-width: $desktop){
         padding:  30px 220px;
@@ -58,7 +65,7 @@
         left: 50%;
         transform: translateX(-50%);
         padding: 10px 20px;
-        border: solid 2px #D1EC7A;
+        border: solid 2px $vertPrincipal;
         border-radius: 30px;
     }
 
@@ -96,14 +103,19 @@
     &__image{
         display: block;
         max-width: 320px;
-        margin: 40px auto;
+        margin: 40px auto 20px auto;
         border-radius: 20px;
-        border: solid 5px #D1EC7A;
+        border: solid 5px $vertPrincipal;
 
         @media screen and (min-width: $desktop){
             max-width: 830px;
             margin: 60px auto;
         }
+    }
+
+    &__carrousselControls{
+        text-align: center;
+        margin: 0 auto 40px auto;
     }
 
     /****** Conteneur des médias et représentations ****************************/
@@ -122,9 +134,9 @@
 
     &__medias, &__representations{
         background-color: white;
-        color: #366A4D;
+        color: $vertSecondaire;
         border-radius: 30px;
-        border: solid 10px #D1EC7A;
+        border: solid 10px $vertPrincipal;
         // margin: 0 auto;
         width: 100%;
         height: 100%;
@@ -143,27 +155,25 @@
         /*** Séparateur ***/
         hr{
             border: none;
-            border-top: solid 3px #366A4D;
+            border-top: solid 3px $vertSecondaire;
             margin: 20px 20px 25px 20px;
         }
 
         /*** Liste ***/
         &__liste{
-            display: flex;
-            flex-direction: column;
+            @include flex(column, default, default, 10px, nowrap);
             list-style: none;
-            gap: 10px;
             padding: 0 20px;
             width: 100%;
         }
 
         /*** Lien ***/
         &__lien{
-            color: #366A4D;
+            color: $vertSecondaire;
             text-decoration: none;
 
             &:hover{
-                background-color: #6A3D96;
+                color: $violetSurvol;
             }
         }
     }
@@ -205,6 +215,7 @@
 
     /** Représentations **/
     &__representations{
+        overflow: scroll;
         /*** Item ***/
         &__item{
             background-color: #F3F3F3;
@@ -242,7 +253,7 @@
 
         /*** Heure ***/
         &__heure{
-            color: #D1EC7A;
+            color: $vertPrincipal;
             background-color: #3A6A45;
             display: inline-flex;
             flex-direction: row;
@@ -255,7 +266,7 @@
         }
 
         &__texteHeure{
-            font-size: 20px;
+            @include fontSize(20px);
             font-family: $fonteSecondaire;
         }
 
