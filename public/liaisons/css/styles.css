@@ -681,6 +681,12 @@ h3--desktop,
   width: 100%;
   gap: 0.03em;
 }
+@media (max-width: 768px) {
+  .accueil__gros-titre {
+    flex-direction: row;
+    gap: 0.03em;
+  }
+}
 .accueil__gros-titre__ligne1 {
   display: flex;
   flex-direction: row;
@@ -1551,8 +1557,8 @@ h3--desktop,
     ** médias/représentations règles générales
         ***Titre
         ***Séparateur
-    ** Médias
         *** Liste
+    ** Médias
         *** Item
         *** Icones
     ** Représentations
@@ -1572,6 +1578,7 @@ h3--desktop,
   /****** Conteneur des médias et représentations ****************************/
   /** médias/représentations règles générales **/
   /** Médias **/
+  /** Représentations **/
 }
 @media screen and (min-width: 601px) {
   .infoArtiste {
@@ -1635,7 +1642,7 @@ h3--desktop,
     margin: 90px auto 0 auto;
   }
 }
-.infoArtiste img {
+.infoArtiste__image {
   display: block;
   max-width: 320px;
   margin: 40px auto;
@@ -1643,52 +1650,67 @@ h3--desktop,
   border: solid 5px #D1EC7A;
 }
 @media screen and (min-width: 601px) {
-  .infoArtiste img {
+  .infoArtiste__image {
     max-width: 200px;
     margin: 60px auto;
   }
 }
 .infoArtiste__conteneurMediasRepresentations {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
   margin: 40px auto;
+  width: 100%;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste__conteneurMediasRepresentations {
+    grid-template-columns: 50% 50%;
+  }
 }
 .infoArtiste__medias, .infoArtiste__representations {
   background-color: white;
   color: #366A4D;
   border-radius: 30px;
   border: solid 10px #D1EC7A;
-  margin: 0 auto;
   width: 100%;
   height: 100%;
   max-height: 400px;
-  padding: 20px;
+  padding-bottom: 20px;
   /*** Titre ***/
   /*** Séparateur ***/
+  /*** Liste ***/
+  /*** Lien ***/
 }
 .infoArtiste__medias__titre, .infoArtiste__representations__titre {
-  font-size: 36px;
-  font-size: 3.6rem;
+  font-size: 25px;
+  font-size: 2.5rem;
   text-transform: uppercase;
-  margin-top: 40px;
+  margin: 40px 20px 0 20px;
   font-weight: 800;
 }
 .infoArtiste__medias hr, .infoArtiste__representations hr {
   border: none;
   border-top: solid 3px #366A4D;
-  margin: 20px 0 25px 0;
+  margin: 20px 20px 25px 20px;
 }
-.infoArtiste__medias {
-  /** Liste **/
-  /** Item **/
-  /** Icones **/
-}
-.infoArtiste__medias__liste {
+.infoArtiste__medias__liste, .infoArtiste__representations__liste {
   display: flex;
   flex-direction: column;
   list-style: none;
   gap: 10px;
+  padding: 0 20px;
+  width: 100%;
+}
+.infoArtiste__medias__lien, .infoArtiste__representations__lien {
+  color: #366A4D;
+  text-decoration: none;
+}
+.infoArtiste__medias__lien:hover, .infoArtiste__representations__lien:hover {
+  background-color: #6A3D96;
+}
+.infoArtiste__medias {
+  /*** Item ***/
+  /*** Icones ***/
 }
 .infoArtiste__medias__item {
   background-color: #F3F3F3;
@@ -1696,20 +1718,80 @@ h3--desktop,
   border-radius: 20px;
   max-height: 75px;
   white-space: nowrap;
-  overflow: scroll;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .infoArtiste__medias__iconeInternet, .infoArtiste__medias__iconeMyspace {
-  min-width: 40px;
-  min-height: 40px;
+  min-width: 25px;
+  min-height: 25px;
   display: inline-block;
   vertical-align: middle;
   margin-right: 10px;
+  background-size: contain;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste__medias__iconeInternet, .infoArtiste__medias__iconeMyspace {
+    min-width: 40px;
+    min-height: 40px;
+  }
 }
 .infoArtiste__medias__iconeInternet {
   background-image: url("../images/fiche_artiste/icons_internet.svg");
 }
 .infoArtiste__medias__iconeMyspace {
   background-image: url("../images/fiche_artiste/icons_myspace.svg");
+}
+.infoArtiste__representations {
+  /*** Item ***/
+  /*** Lieu et date ***/
+  /*** Heure ***/
+}
+.infoArtiste__representations__item {
+  background-color: #F3F3F3;
+  padding: 17.5px 20px;
+  border-radius: 20px;
+}
+.infoArtiste__representations__emplacements {
+  /**** Icones ****/
+}
+.infoArtiste__representations__emplacements__lieu {
+  margin: 10px 0;
+}
+.infoArtiste__representations__emplacements__iconeDate, .infoArtiste__representations__emplacements__iconeLieu {
+  min-width: 25px;
+  min-height: 25px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  background-size: contain;
+}
+@media screen and (min-width: 601px) {
+  .infoArtiste__representations__emplacements__iconeDate, .infoArtiste__representations__emplacements__iconeLieu {
+    min-width: 40px;
+    min-height: 40px;
+  }
+}
+.infoArtiste__representations__emplacements__iconeDate {
+  background-image: url("../images/fiche_artiste/icons_date.svg");
+}
+.infoArtiste__representations__emplacements__iconeLieu {
+  background-image: url("../images/fiche_artiste/icons_lieu.svg");
+}
+.infoArtiste__representations__heure {
+  color: #D1EC7A;
+  background-color: #3A6A45;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  padding: 12px 0;
+  border-radius: 15px;
+  gap: 5px;
+  margin-top: 10px;
+}
+.infoArtiste__representations__texteHeure {
+  font-size: 20px;
+  font-family: "IBM Plex Mono", monospace;
 }
 
 /*# sourceMappingURL=styles.css.map */
